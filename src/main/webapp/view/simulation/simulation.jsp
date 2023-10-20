@@ -22,7 +22,7 @@
                     <h1 class="text-3xl font-bold mb-5 text-blue-600">Loan Simulation Calculator</h1>
 
                     <div class="mb-4">
-                        <label for="loanAmount" class="block text-gray-700 text-lg font-medium">Enter Borrowed Capital (Loan Amount): <span id="loanAmountValue" class="text-blue-600 text-2xl">1000</span> MAD</label>
+                        <label for="loanAmount" class="block text-gray-700 text-lg font-medium">Loan Amount: <span id="loanAmountValue" class="text-blue-600 text-2xl">1000</span> MAD</label>
                         <input type="range" id="loanAmount" name="loanAmount" min="100" max="300000" step="100" value="1000" class="range-slider">
                     </div>
 
@@ -31,7 +31,7 @@
                         <input type="range" id="monthlyPayments" name="monthlyPayments" min="1" max="84" step="1" value="12" class="range-slider">
                     </div>
 
-                    <div id="result" class="mt-4 text-2xl text-blue-700">Calculated Monthly Payment: 0.00 MAD</div>
+                    <div id="result" class="mt-4 text-2xl text-blue-700">Simulation : 0.00 MAD</div>
                 </div>
             </div>
 
@@ -115,6 +115,10 @@
             currentStep++;
             showStep(currentStep);
         }
+        if (currentStep === 2) {
+            // Save values to local storage
+            saveToLocalStorage();
+        }
     }
 
     function prevStep() {
@@ -127,7 +131,19 @@
     function changeStep(step) {
         showStep(step);
     }
+
+    function saveToLocalStorage() {
+        var loanAmountInput = document.getElementById("loanAmount");
+        var monthlyPaymentsInput = document.getElementById("monthlyPayments");
+        var simulation = document.getElementById("result").textContent;
+
+        // Store values in local storage
+        localStorage.setItem("LoanAmount", loanAmountInput.value);
+        localStorage.setItem("MonthlyPayments", monthlyPaymentsInput.value);
+        localStorage.setItem("Simulation", simulation);
+    }
 </script>
+
 <script>
     function updateValues() {
         var loanAmountInput = document.getElementById("loanAmount");
@@ -149,8 +165,11 @@
         var monthlyPayment = (borrowedCapital * monthlyInterestRate) /
             (1 - Math.pow(1 + monthlyInterestRate, -numberOfMonthlyPayments));
 
-        document.getElementById("result").innerHTML = "Calculated Monthly Payment: " + monthlyPayment.toFixed(2) + " MAD";
+        var monthlyPaymentValue = monthlyPayment.toFixed(2);
+
+        document.getElementById("result").innerHTML = "Calculated Monthly Payment: " + monthlyPaymentValue + " MAD";
     }
+
 
     document.getElementById("loanAmount").addEventListener("input", updateValues);
     document.getElementById("monthlyPayments").addEventListener("input", updateValues);

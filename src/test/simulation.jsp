@@ -6,11 +6,11 @@
         <form id="stepForm">
             <div class="flex flex-col space-y-4 md:space-x-4 md:flex-row md:space-y-0">
                 <div class="col-4 pad-ste active" id="link-back-step-1" onclick="changeStep(1)">
-                    <span class="step-number">1</span> Simuler mon credit
+                    <span class="step-number">1</span> Simuler mon crédit
                 </div>
 
                 <div class="col-4 pad-ste" id="link-back-step-2" onclick="changeStep(2)">
-                    <span class="step-number">2</span> Mes coordonnees
+                    <span class="step-number">2</span> Mes coordonnées
                 </div>
                 <div class="col-4 pad-ste" id="link-back-step-3" onclick="changeStep(3)">
                     <span class="step-number">3</span> Mes infos personnelles
@@ -22,7 +22,7 @@
                     <h1 class="text-3xl font-bold mb-5 text-blue-600">Loan Simulation Calculator</h1>
 
                     <div class="mb-4">
-                        <label for="loanAmount" class="block text-gray-700 text-lg font-medium">Enter Borrowed Capital (Loan Amount): <span id="loanAmountValue" class="text-blue-600 text-2xl">1000</span> MAD</label>
+                        <label for="loanAmount" class="block text-gray-700 text-lg font-medium">Loan Amount: <span id="loanAmountValue" class="text-blue-600 text-2xl">1000</span> MAD</label>
                         <input type="range" id="loanAmount" name="loanAmount" min="100" max="300000" step="100" value="1000" class="range-slider">
                     </div>
 
@@ -31,7 +31,7 @@
                         <input type="range" id="monthlyPayments" name="monthlyPayments" min="1" max="84" step="1" value="12" class="range-slider">
                     </div>
 
-                    <div id="result" class="mt-4 text-2xl text-blue-700">Calculated Monthly Payment: 0.00 MAD</div>
+                    <div id="result" class="mt-4 text-2xl text-blue-700">Simulation : 0.00 MAD</div>
                 </div>
             </div>
 
@@ -75,7 +75,6 @@
     </div>
 </div>
 <%@ include file="../includes/footer.jsp" %>
-
 <script>
     var currentStep = 1;
     showStep(currentStep);
@@ -124,8 +123,11 @@
             showStep(currentStep);
         }
     }
-</script>
 
+    function changeStep(step) {
+        showStep(step);
+    }
+</script>
 <script>
     function updateValues() {
         var loanAmountInput = document.getElementById("loanAmount");
