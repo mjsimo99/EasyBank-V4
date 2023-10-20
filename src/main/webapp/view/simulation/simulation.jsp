@@ -22,7 +22,7 @@
                     <h1 class="text-3xl font-bold mb-5 text-blue-600">Loan Simulation Calculator</h1>
 
                     <div class="mb-4">
-                        <label for="loanAmount" class="block text-gray-700 text-lg font-medium">Enter Borrowed Capital (Loan Amount): <span id="loanAmountValue" class="text-blue-600 text-2xl">1000</span> MAD</label>
+                        <label for="loanAmount" class="block text-gray-700 text-lg font-medium">Loan Amount: <span id="loanAmountValue" class="text-blue-600 text-2xl">1000</span> MAD</label>
                         <input type="range" id="loanAmount" name="loanAmount" min="100" max="300000" step="100" value="1000" class="range-slider">
                     </div>
 
@@ -31,48 +31,48 @@
                         <input type="range" id="monthlyPayments" name="monthlyPayments" min="1" max="84" step="1" value="12" class="range-slider">
                     </div>
 
-                    <div id="result" class="mt-4 text-2xl text-blue-700">Calculated Monthly Payment: 0.00 MAD</div>
+                    <div id="result" class="mt-4 text-2xl text-blue-700">Simulation : 0.00 MAD</div>
                 </div>
             </div>
 
             <div id="step2" class="step">
-            <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
-                <div class="mb-4">
-                    <label for="code" class="block font-semibold text-gray-700 mb-4">Step 2: Mes coordonnées</label>
-                    <div class="relative">
-                        <input class="input-cal input-base" name="code" id="code" placeholder="" type="text">
-                        <label id="label-input">Enter Code Client</label>
+                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
+                    <div class="mb-4">
+                        <label for="code" class="block font-semibold text-gray-700 mb-4">Step 2: Mes coordonnées</label>
+                        <div class="relative">
+                            <input class="input-cal input-base" name="code" id="code" placeholder="" type="text">
+                            <label id="label-input">Enter Code Client</label>
+                        </div>
                     </div>
                 </div>
             </div>
-    </div>
 
-    <div id="step3" class="step">
-        <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
-            <div class="mb-4">
-                <label class="block font-semibold text-gray-700">Step 3: Mes infos personnelles</label>
-                <input class="form-inputs" type="hidden" name="action" value="edit">
-                <input class="form-inputs" type="hidden" id="code" name="code" value="${client.code}" readonly><br>
-                <label for="nom">Last Name:</label>
-                <input class="form-inputs" type="text" id="nom" name="nom" value="${client.nom}" required><br>
-                <label for="prenom">First Name:</label>
-                <input class="form-inputs" type="text" id="prenom" name="prenom" value="${client.prenom}" required><br>
-                <label for="dateN">Date of Birth (YYYY-MM-DD):</label>
-                <input class="form-inputs" type="date" id="dateN" name="dateN" value="${client.dateN}" required><br>
-                <label for="tel">Phone:</label>
-                <input class="form-inputs" type="text" id="tel" name="tel" value="${client.tel}" required><br>
-                <label for="adress">Address:</label>
-                <input class="form-inputs" type="text" id="adress" name="adress" value="${client.adress}" required><br>
+            <div id="step3" class="step">
+                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
+                    <div class="mb-4">
+                        <label class="block font-semibold text-gray-700">Step 3: Mes infos personnelles</label>
+                        <input class="form-inputs" type="hidden" name="action" value="edit">
+                        <input class="form-inputs" type="hidden" id="code" name="code" value="${client.code}" readonly><br>
+                        <label for="nom">Last Name:</label>
+                        <input class="form-inputs" type="text" id="nom" name="nom" value="${client.nom}" required><br>
+                        <label for="prenom">First Name:</label>
+                        <input class="form-inputs" type="text" id="prenom" name="prenom" value="${client.prenom}" required><br>
+                        <label for="dateN">Date of Birth (YYYY-MM-DD):</label>
+                        <input class="form-inputs" type="date" id="dateN" name="dateN" value="${client.dateN}" required><br>
+                        <label for="tel">Phone:</label>
+                        <input class="form-inputs" type="text" id="tel" name="tel" value="${client.tel}" required><br>
+                        <label for="adress">Address:</label>
+                        <input class="form-inputs" type="text" id="adress" name="adress" value="${client.adress}" required><br>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="mt-4 flex justify-center">
-        <button type="button" id="prevBtn" class="btn button-update mx-4" onclick="prevStep()">Previous</button>
-        <button type="button" id="nextBtn" class="btn button-update" onclick="nextStep()">Next</button>
+            <div class="mt-4 flex justify-center">
+                <button type="button" id="prevBtn" class="btn button-update mx-4" onclick="prevStep()">Previous</button>
+                <button type="button" id="nextBtn" class="btn button-update" onclick="nextStep()">Next</button>
+            </div>
+        </form>
     </div>
-    </form>
-</div>
 </div>
 <%@ include file="../includes/footer.jsp" %>
 <script>
@@ -88,13 +88,11 @@
         }
         steps[currentStep - 1].style.display = "block";
 
-        // Clear the color for all step buttons
         var stepButtons = document.getElementsByClassName("col-4 pad-ste");
         for (var i = 0; i < stepButtons.length; i++) {
             stepButtons[i].classList.remove("active");
         }
 
-        // Set the color for the current step button
         var currentStepButton = document.getElementById("link-back-step-" + currentStep);
         currentStepButton.classList.add("active");
 
@@ -115,6 +113,9 @@
             currentStep++;
             showStep(currentStep);
         }
+        if (currentStep === 2) {
+            saveToLocalStorage();
+        }
     }
 
     function prevStep() {
@@ -127,7 +128,18 @@
     function changeStep(step) {
         showStep(step);
     }
+
+    function saveToLocalStorage() {
+        var loanAmountInput = document.getElementById("loanAmount");
+        var monthlyPaymentsInput = document.getElementById("monthlyPayments");
+        var simulation = document.getElementById("result").textContent;
+
+        localStorage.setItem("LoanAmount", loanAmountInput.value);
+        localStorage.setItem("MonthlyPayments", monthlyPaymentsInput.value);
+        localStorage.setItem("Simulation", simulation);
+    }
 </script>
+
 <script>
     function updateValues() {
         var loanAmountInput = document.getElementById("loanAmount");
@@ -149,7 +161,9 @@
         var monthlyPayment = (borrowedCapital * monthlyInterestRate) /
             (1 - Math.pow(1 + monthlyInterestRate, -numberOfMonthlyPayments));
 
-        document.getElementById("result").innerHTML = "Calculated Monthly Payment: " + monthlyPayment.toFixed(2) + " MAD";
+        var monthlyPaymentValue = monthlyPayment.toFixed(2);
+
+        document.getElementById("result").innerHTML = monthlyPaymentValue + " MAD";
     }
 
     document.getElementById("loanAmount").addEventListener("input", updateValues);
