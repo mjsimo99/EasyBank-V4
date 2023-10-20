@@ -88,13 +88,11 @@
         }
         steps[currentStep - 1].style.display = "block";
 
-        // Clear the color for all step buttons
         var stepButtons = document.getElementsByClassName("col-4 pad-ste");
         for (var i = 0; i < stepButtons.length; i++) {
             stepButtons[i].classList.remove("active");
         }
 
-        // Set the color for the current step button
         var currentStepButton = document.getElementById("link-back-step-" + currentStep);
         currentStepButton.classList.add("active");
 
@@ -116,7 +114,6 @@
             showStep(currentStep);
         }
         if (currentStep === 2) {
-            // Save values to local storage
             saveToLocalStorage();
         }
     }
@@ -137,7 +134,6 @@
         var monthlyPaymentsInput = document.getElementById("monthlyPayments");
         var simulation = document.getElementById("result").textContent;
 
-        // Store values in local storage
         localStorage.setItem("LoanAmount", loanAmountInput.value);
         localStorage.setItem("MonthlyPayments", monthlyPaymentsInput.value);
         localStorage.setItem("Simulation", simulation);
@@ -167,9 +163,8 @@
 
         var monthlyPaymentValue = monthlyPayment.toFixed(2);
 
-        document.getElementById("result").innerHTML = "Calculated Monthly Payment: " + monthlyPaymentValue + " MAD";
+        document.getElementById("result").innerHTML = monthlyPaymentValue + " MAD";
     }
-
 
     document.getElementById("loanAmount").addEventListener("input", updateValues);
     document.getElementById("monthlyPayments").addEventListener("input", updateValues);
