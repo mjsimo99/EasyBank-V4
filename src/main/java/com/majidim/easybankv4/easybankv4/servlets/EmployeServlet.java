@@ -2,7 +2,9 @@ package com.majidim.easybankv4.easybankv4.servlets;
 
 import com.majidim.easybankv4.easybankv4.dto.Employe;
 import com.majidim.easybankv4.easybankv4.dto.Personne;
+import com.majidim.easybankv4.easybankv4.implementation.ClientImpl;
 import com.majidim.easybankv4.easybankv4.implementation.EmployeImpl;
+import com.majidim.easybankv4.easybankv4.service.ClientService;
 import com.majidim.easybankv4.easybankv4.service.EmployeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,11 +20,13 @@ import java.util.Optional;
 @WebServlet("/employe")
 
 public class EmployeServlet extends HttpServlet {
-    private final EmployeService employeService;
+    private EmployeService employeService;
 
-    public EmployeServlet() {
-        this.employeService = new EmployeService(new EmployeImpl());
+    @Override
+    public void init(){
+        this.employeService = new ClientService(new EmployeImpl());
     }
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");

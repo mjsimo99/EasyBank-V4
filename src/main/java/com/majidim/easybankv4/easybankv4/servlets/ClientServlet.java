@@ -17,11 +17,13 @@ import java.util.Optional;
 
 @WebServlet("/client")
 public class ClientServlet extends HttpServlet {
-    private final ClientService clientService;
+    private ClientService clientService;
 
-    public ClientServlet() {
-        this.clientService = new ClientService(new ClientImpl());
-    }
+    @Override
+    public void init(){
+            this.clientService = new ClientService(new ClientImpl());
+        }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
