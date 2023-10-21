@@ -24,8 +24,9 @@ public class EmployeServlet extends HttpServlet {
 
     @Override
     public void init(){
-        this.employeService = new ClientService(new EmployeImpl());
+        this.employeService = new EmployeService(new EmployeImpl());
     }
+
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
