@@ -62,3 +62,39 @@ function saveToLocalStorage() {
     localStorage.setItem("MonthlyPayments", monthlyPaymentsInput.value);
     localStorage.setItem("Simulation", simulationValue);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+function checkAndLoadClient() {
+    var clientCode = document.getElementById("code").value;
+
+    fetch('http://localhost:8080/searchClient?code=' + clientCode)
+        .then(response => response.text())
+        .then(clientDetails => {
+            if (clientDetails) {
+                var detailsArray = clientDetails.split("\n");
+                document.getElementById("nom").value = detailsArray[0].substring(12); // Set the last name value
+                document.getElementById("prenom").value = detailsArray[1].substring(13); // Set the first name value
+                document.getElementById("dateN").value = detailsArray[2].substring(15); // Set the date of birth value
+                document.getElementById("tel").value = detailsArray[3].substring(8);   // Set the phone value
+                document.getElementById("adress").value = detailsArray[4].substring(11); // Set the address value
+
+                nextStep();
+            } else {
+                alert('Client not found');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+

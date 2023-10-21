@@ -36,23 +36,24 @@
             </div>
 
             <div id="step2" class="step">
-            <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
-                <div class="mb-4">
-                    <label for="code" class="block font-semibold text-gray-700 mb-4">Step 2: Mes coordonnées</label>
-                    <div class="relative">
-                        <input class="input-cal input-base" name="code" id="code" placeholder="" type="text">
-                        <label id="label-input">Enter Code Client</label>
+                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
+                    <div class="mb-4">
+                        <label for="code" class="block font-semibold text-gray-700 mb-4">Step 2: Mes coordonnées</label>
+                        <div class="relative">
+                            <input class="input-cal input-base" name="code" id="code" placeholder="" type="text">
+                            <label id="label-input">Enter Code Client</label>
+                            <button id="searchClientButton" onclick="checkAndLoadClient()">Search</button>
+                        </div>
                     </div>
                 </div>
             </div>
-    </div>
 
-    <div id="step3" class="step">
+
+            <div id="step3" class="step">
         <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
             <div class="mb-4">
                 <label class="block font-semibold text-gray-700">Step 3: Mes infos personnelles</label>
                 <input class="form-inputs" type="hidden" name="action" value="edit">
-                <input class="form-inputs" type="hidden" id="code" name="code" value="${client.code}" readonly><br>
                 <label for="nom">Last Name:</label>
                 <input class="form-inputs" type="text" id="nom" name="nom" value="${client.nom}" required><br>
                 <label for="prenom">First Name:</label>
