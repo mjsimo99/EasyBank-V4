@@ -1,0 +1,16 @@
+package com.majidim.easybankv4.easybankv4.interfeces;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface InterfaceData<Entity, Identifier> {
+    public Optional<Entity> create(Entity entity);
+
+    public Optional<Entity> update(Entity entity);
+
+    public Optional<Entity> findByID(Identifier id);
+
+    public List<Entity> getAll();
+
+    public boolean delete(Identifier id);
+}
