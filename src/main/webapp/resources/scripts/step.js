@@ -54,9 +54,11 @@ function changeStep(step) {
 function saveToLocalStorage() {
     var loanAmountInput = document.getElementById("loanAmount");
     var monthlyPaymentsInput = document.getElementById("monthlyPayments");
-    var simulation = document.getElementById("result");
+    var simulation = document.getElementById("result").textContent; // Get the content of the result div
+
+    var simulationValue = parseFloat(simulation.match(/[\d.]+/));
 
     localStorage.setItem("LoanAmount", loanAmountInput.value);
     localStorage.setItem("MonthlyPayments", monthlyPaymentsInput.value);
-    localStorage.setItem("Simulation", simulation);
+    localStorage.setItem("Simulation", simulationValue);
 }
