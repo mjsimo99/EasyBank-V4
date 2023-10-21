@@ -17,9 +17,10 @@ import java.util.Optional;
 
 @WebServlet("/client")
 public class ClientServlet extends HttpServlet {
-    private final ClientService clientService;
+    private ClientService clientService;
 
-    public ClientServlet() {
+    @Override
+    public void init(){
         this.clientService = new ClientService(new ClientImpl());
     }
 
