@@ -15,8 +15,8 @@ import java.util.Optional;
 
 public class DemendeCreditImpl implements IDemendeCredit {
     private static final String CREATE_DEMANDE = "INSERT INTO DemendeCredits " +
-            "(numero, date, montant, duree, remarque, status, agence_code, employe_matricule, client_code) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "(numero, date, montant, duree, remarque, status, agence_code, employe_matricule, client_code,simulation) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SEARCH_BY_DATE = "SELECT * FROM DemendeCredits WHERE date = ?";
     private static final String SEARCH_BY_CODE = "SELECT * FROM DemendeCredits WHERE numero = ?";
     private static final String UPDATE_STATUS = "UPDATE DemendeCredits SET status = ? WHERE numero = ?";
@@ -39,6 +39,7 @@ public class DemendeCreditImpl implements IDemendeCredit {
             preparedStatement.setString(7, demendeCredit.getAgence().getCode());
             preparedStatement.setString(8, demendeCredit.getEmploye().getMatricule());
             preparedStatement.setString(9, demendeCredit.getClient().getCode());
+            preparedStatement.setDouble(3, demendeCredit.getSimulation());
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
@@ -65,6 +66,8 @@ public class DemendeCreditImpl implements IDemendeCredit {
                 creditRequest.setNumero(resultSet.getString("numero"));
                 creditRequest.setDate(resultSet.getDate("date").toLocalDate());
                 creditRequest.setMontant(resultSet.getDouble("montant"));
+                creditRequest.setMontant(resultSet.getDouble("simulation"));
+
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
@@ -93,6 +96,7 @@ public class DemendeCreditImpl implements IDemendeCredit {
                 creditRequest.setNumero(resultSet.getString("numero"));
                 creditRequest.setDate(resultSet.getDate("date").toLocalDate());
                 creditRequest.setMontant(resultSet.getDouble("montant"));
+                creditRequest.setMontant(resultSet.getDouble("simulation"));
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
@@ -122,6 +126,7 @@ public class DemendeCreditImpl implements IDemendeCredit {
                 creditRequest.setNumero(resultSet.getString("numero"));
                 creditRequest.setDate(resultSet.getDate("date").toLocalDate());
                 creditRequest.setMontant(resultSet.getDouble("montant"));
+                creditRequest.setMontant(resultSet.getDouble("simulation"));
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
@@ -152,6 +157,7 @@ public class DemendeCreditImpl implements IDemendeCredit {
                 creditRequest.setNumero(resultSet.getString("numero"));
                 creditRequest.setDate(resultSet.getDate("date").toLocalDate());
                 creditRequest.setMontant(resultSet.getDouble("montant"));
+                creditRequest.setMontant(resultSet.getDouble("simulation"));
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
 
@@ -185,6 +191,7 @@ public class DemendeCreditImpl implements IDemendeCredit {
                 creditRequest.setNumero(resultSet.getString("numero"));
                 creditRequest.setDate(resultSet.getDate("date").toLocalDate());
                 creditRequest.setMontant(resultSet.getDouble("montant"));
+                creditRequest.setMontant(resultSet.getDouble("simulation"));
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
 

@@ -17,7 +17,7 @@ public class DemendeCredit {
     private Employe employe;
     private Client client;
     private Agence agence;
-
+    private double simulation;
 
 
 }
