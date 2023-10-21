@@ -42,7 +42,7 @@
                         <div class="relative">
                             <input class="input-cal input-base" name="code" id="code" placeholder="" type="text">
                             <label id="label-input">Enter Code Client</label>
-                            <button id="searchClientButton" onclick="checkAndLoadClient()">Search</button>
+                            <button class="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600" id="searchClientButton" onclick="checkAndLoadClient()">Search</button>
                         </div>
                     </div>
                 </div>
