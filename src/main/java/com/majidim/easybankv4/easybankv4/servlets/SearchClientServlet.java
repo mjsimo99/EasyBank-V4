@@ -28,7 +28,6 @@ public class SearchClientServlet extends HttpServlet {
         List<Client> clients = clientService.SearchByCode(clientCode);
 
         if (!clients.isEmpty()) {
-            // Create a plain text response with client details
             Client client = clients.get(0);
             String clientDetails = "Last Name: " + client.getNom() +
                     "\nFirst Name: " + client.getPrenom() +

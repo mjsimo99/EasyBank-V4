@@ -54,7 +54,7 @@ function changeStep(step) {
 function saveToLocalStorage() {
     var loanAmountInput = document.getElementById("loanAmount");
     var monthlyPaymentsInput = document.getElementById("monthlyPayments");
-    var simulation = document.getElementById("result").textContent; // Get the content of the result div
+    var simulation = document.getElementById("result").textContent;
 
     var simulationValue = parseFloat(simulation.match(/[\d.]+/));
 
@@ -82,11 +82,11 @@ function checkAndLoadClient() {
         .then(clientDetails => {
             if (clientDetails) {
                 var detailsArray = clientDetails.split("\n");
-                document.getElementById("nom").value = detailsArray[0].substring(12); // Set the last name value
-                document.getElementById("prenom").value = detailsArray[1].substring(13); // Set the first name value
-                document.getElementById("dateN").value = detailsArray[2].substring(15); // Set the date of birth value
-                document.getElementById("tel").value = detailsArray[3].substring(8);   // Set the phone value
-                document.getElementById("adress").value = detailsArray[4].substring(11); // Set the address value
+                document.getElementById("nom").value = detailsArray[0].substring(12);
+                document.getElementById("prenom").value = detailsArray[1].substring(13);
+                document.getElementById("dateN").value = detailsArray[2].substring(15);
+                document.getElementById("tel").value = detailsArray[3].substring(8);
+                document.getElementById("adress").value = detailsArray[4].substring(11);
 
                 nextStep();
             } else {
