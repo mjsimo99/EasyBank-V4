@@ -18,9 +18,10 @@ import java.util.Optional;
 @WebServlet("/employe")
 
 public class EmployeServlet extends HttpServlet {
-    private final EmployeService employeService;
+    private EmployeService employeService;
 
-    public EmployeServlet() {
+    @Override
+    public void init(){
         this.employeService = new EmployeService(new EmployeImpl());
     }
     @Override
