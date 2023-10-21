@@ -33,11 +33,14 @@ public class HelloServlet extends HttpServlet {
         agence.setAdresse("without");
         agence.setNom("persist");
         agence.setTel("0649600623");
+        agence.setCode("test2");
         try {
             em.getTransaction().begin();
-            //em.persist(agence);
+            em.persist(agence);
             em.getTransaction().commit();
-        } finally {
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }finally {
             em.close();
         }
     }

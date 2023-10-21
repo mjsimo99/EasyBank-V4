@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name="Agences")
 public class Agence {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "code")
     private String code;
     @Column(name = "nom")
