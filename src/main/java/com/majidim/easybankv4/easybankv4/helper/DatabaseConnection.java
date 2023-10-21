@@ -6,7 +6,7 @@ public class DatabaseConnection {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/easybankv3";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "admin";
+    private static final String PASSWORD = "hatikmi";
     private  static Connection connection;
     public static Connection getConn() {
 

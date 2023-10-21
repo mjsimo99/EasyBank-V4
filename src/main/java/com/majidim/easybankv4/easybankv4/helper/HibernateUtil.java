@@ -16,9 +16,9 @@ public class HibernateUtil {
             Configuration configuration = new Configuration();
 
             configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-            configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/easybankv4");
+            configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/easybankv3");
             configuration.setProperty("hibernate.connection.username", "postgres");
-            configuration.setProperty("hibernate.connection.password", "admin");
+            configuration.setProperty("hibernate.connection.password", "hatikmi");
             configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
             configuration.setProperty("hibernate.show_sql", "true");
 

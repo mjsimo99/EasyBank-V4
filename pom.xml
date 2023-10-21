@@ -52,11 +52,11 @@
           <artifactId>postgresql</artifactId>
           <version>42.6.0</version>
       </dependency>
-      <dependency>
+<!--      <dependency>
           <groupId>javax.servlet</groupId>
           <artifactId>jstl</artifactId>
           <version>1.2</version>
-      </dependency>
+      </dependency>-->
       <dependency>
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok</artifactId>
