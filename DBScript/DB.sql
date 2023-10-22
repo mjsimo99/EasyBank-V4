@@ -11,7 +11,7 @@ CREATE TABLE Employes (
                           dateN DATE,
                           tel VARCHAR(255),
                           adress VARCHAR(255)
-);
+)Inherits();
 
 CREATE TABLE Clients (
                          code VARCHAR(255) PRIMARY KEY,

@@ -1,11 +1,8 @@
-package com.majidim.easybankv4.easybankv4.service;
+package com.majidim.easybankv4.easybankv4.newService;
 
-import com.majidim.easybankv4.easybankv4.dto.*;
+import com.majidim.easybankv4.easybankv4.HibernateImps.DemandeCreditImpl;
 import com.majidim.easybankv4.easybankv4.dto.DemendeCredit;
-import com.majidim.easybankv4.easybankv4.implementation.DemandeCreditImpl;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 public class DemandeCreditService {
@@ -16,11 +13,14 @@ public class DemandeCreditService {
     }
 
     public Optional<DemendeCredit> create(DemendeCredit demendeCredit) {
-        return creditImpl.Add(demendeCredit);
+        return creditImpl.create(demendeCredit);
     }
 
+    public Optional<DemendeCredit> findByCode(String code) {
+        return creditImpl.findByID(code);
+    }
 
-   public List<DemendeCredit> ShowList() {
+/*    public List<DemendeCredit> ShowList() {
         return creditImpl.ShowList();
     }
 
@@ -38,5 +38,5 @@ public class DemandeCreditService {
 
     public Optional<DemendeCredit> UpdateStatus(DemendeCredit demendeCredit) {
         return creditImpl.UpdateStatus(demendeCredit);
-    }
+    }*/
 }

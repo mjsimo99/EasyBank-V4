@@ -8,7 +8,7 @@ public interface InterfaceData<Entity, Identifier> {
 
     public Optional<Entity> update(Entity entity);
 
-    public Optional<Entity> findByID(Identifier id);
+    public Optional<Entity> findByID(Identifier id,Class<Entity> entityClass);
 
     public List<Entity> getAll();
 

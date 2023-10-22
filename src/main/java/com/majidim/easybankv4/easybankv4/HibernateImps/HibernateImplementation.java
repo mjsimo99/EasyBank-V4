@@ -44,9 +44,23 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
     }
 
     @Override
-    public Optional<Entity> findByID(Identifier id) {
-        return Optional.empty();
+    public Optional<Entity> findByID(Identifier id, Class<Entity> entityClass) {
+        try {
+            em.getTransaction().begin();
+            Entity entity = em.find(entityClass, id);
+            em.getTransaction().commit();
+            return Optional.ofNullable(entity);
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception
+            return Optional.empty(); // Return an empty Optional on error
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
     }
+
+
 
     @Override
     public List<Entity> getAll() {

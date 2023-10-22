@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DemendeCreditImpl implements IDemendeCredit {
+public class DemandeCreditImpl implements IDemendeCredit {
     private static final String CREATE_DEMANDE = "INSERT INTO DemendeCredits " +
             "(numero, date, montant, duree, remarque, status, agence_code, employe_matricule, client_code) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

@@ -1,17 +1,17 @@
 package com.majidim.easybankv4.easybankv4.servlets;
 
 import java.io.*;
-import java.util.HashMap;
+import java.util.Optional;
 import java.util.Random;
 
 import com.majidim.easybankv4.easybankv4.HibernateImps.AgenceImp;
+import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import com.majidim.easybankv4.easybankv4.dto.Agence;
-import com.majidim.easybankv4.easybankv4.service.AgenceService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
+import com.majidim.easybankv4.easybankv4.dto.Client;
+import com.majidim.easybankv4.easybankv4.service.ClientService;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import jakarta.persistence.Persistence;
 
 @WebServlet(name = "helloServlet", value = "/test")
 public class HelloServlet extends HttpServlet {
@@ -35,15 +35,27 @@ public class HelloServlet extends HttpServlet {
         demendeCredit.setEmploye();
         demendeCredit.setRemarque(); */
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPersistence");
-        EntityManager em = emf.createEntityManager(); //represent the context
-        Agence agence = new Agence();
+        /*EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPersistence");
+        EntityManager em = emf.createEntityManager(); //represent the context*/
+/*        Agence agence = new Agence();
         agence.setAdresse("without");
         agence.setNom("persist");
         agence.setTel(generateRandomString(3));
         agence.setCode(generateRandomString(10));
         AgenceService agenceService = new AgenceService(new AgenceImp());
-        agenceService.create(agence);
+        agenceService.create(agence);*/
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
+        //AgenceService agenceService = new AgenceService(new AgenceImp());
+        //ClientService clientService = new ClientService(new ClientImpl());
+        //Optional<Client> client = clientService.findByCode("1");
+/*        if (client.isPresent()){
+            System.out.println(client.get().getNom());
+            System.out.println(client.get().getTel());
+        }*/
     }
 
     public void destroy() {
