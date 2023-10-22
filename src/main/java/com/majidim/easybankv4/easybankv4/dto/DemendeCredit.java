@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Entity
+//@Entity
 public class DemendeCredit {
     @Id
     private String numero;
@@ -23,14 +23,14 @@ public class DemendeCredit {
     private String remarque;
     @Column
     private CreditStatus status;
-    @ManyToOne
-    @JoinColumn(name = "employe_matricule")
+    //@ManyToOne
+    //@JoinColumn(name = "employe_matricule")
     private Employe employe;
-    @ManyToOne
-    @JoinColumn(name = "client_code")
+    //@ManyToOne
+    //@JoinColumn(name = "client_code")
     private Client client;
-    @ManyToOne
-    @JoinColumn(name = "agence_code")
+    //@ManyToOne
+    //@JoinColumn(name = "agence_code")
     private Agence agence;
 
 }
