@@ -92,8 +92,8 @@ public class EmployeAgencyImpl implements IEmployeAgency {
                         "",
                         "",
                         employeMatricule,
-                        LocalDate.now(),
-                        ""
+                        LocalDate.now().toString(),
+                        LocalDate.now()
                 );
 
                 Agence agence = new Agence();

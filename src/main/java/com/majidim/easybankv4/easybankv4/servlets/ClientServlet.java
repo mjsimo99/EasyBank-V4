@@ -102,8 +102,9 @@ public class ClientServlet extends HttpServlet {
         LocalDate dateN = LocalDate.parse(request.getParameter("dateN"));
         String tel = request.getParameter("tel");
         String adress = request.getParameter("adress");
+        String emailadresse = request.getParameter("emailadresse");
+        Client client = new Client(code, nom, prenom, dateN, tel, adress,emailadresse);
 
-        Client client = new Client(code, nom, prenom, dateN, tel, adress);
 
         Optional<Client> updatedClient = clientService.Update(client);
 
@@ -124,8 +125,8 @@ public class ClientServlet extends HttpServlet {
         LocalDate dateN = LocalDate.parse(request.getParameter("dateN"));
         String tel = request.getParameter("tel");
         String adress = request.getParameter("adress");
-
-        Client client = new Client(code, nom, prenom, dateN, tel, adress);
+        String emailadresse = request.getParameter("emailadresse");
+        Client client = new Client(code, nom, prenom, dateN, tel, adress,emailadresse);
 
         try {
             Optional<Personne> addedClient = clientService.Add(client);

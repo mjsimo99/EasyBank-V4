@@ -69,8 +69,9 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setRemarque(resultSet.getString("remarque"));
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
                 creditRequest.setAgence(agence);
-                creditRequest.setEmploye(new Employe(null, null, null, null, null, resultSet.getString("employe_matricule"), null, null));
-                creditRequest.setClient(new Client(resultSet.getString("client_code"), null, null, null, null, null));
+
+                creditRequest.setEmploye(new Employe(resultSet.getString("employe_matricule"),null));
+                creditRequest.setClient(new Client(resultSet.getString("client_code")));
                 creditRequests.add(creditRequest);
             }
         } catch (SQLException e) {
@@ -97,8 +98,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setRemarque(resultSet.getString("remarque"));
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
                 creditRequest.setAgence(new Agence(resultSet.getString("agence_code"), null, null, null));
-                creditRequest.setEmploye(new Employe(null, null, null, null, null, resultSet.getString("employe_matricule"), null, null));
-                creditRequest.setClient(new Client(resultSet.getString("client_code"), null, null, null, null, null));
+                creditRequest.setEmploye(new Employe( resultSet.getString("employe_matricule"), null));
+                creditRequest.setClient(new Client(resultSet.getString("client_code")));
                 creditRequests.add(creditRequest);
             }
         } catch (SQLException e) {
@@ -126,8 +127,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setRemarque(resultSet.getString("remarque"));
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
                 creditRequest.setAgence(new Agence(resultSet.getString("agence_code"), null, null, null));
-                creditRequest.setEmploye(new Employe(null, null, null, null, null, resultSet.getString("employe_matricule"), null, null));
-                creditRequest.setClient(new Client(resultSet.getString("client_code"), null, null, null, null, null));
+                creditRequest.setEmploye(new Employe(resultSet.getString("employe_matricule"), null));
+                creditRequest.setClient(new Client(resultSet.getString("client_code")));
                 creditRequests.add(creditRequest);
             }
         } catch (SQLException e) {
@@ -157,8 +158,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
 
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
                 creditRequest.setAgence(new Agence(resultSet.getString("agence_code"), null, null, null));
-                creditRequest.setEmploye(new Employe(null, null, null, null, null, resultSet.getString("employe_matricule"), null, null));
-                creditRequest.setClient(new Client(resultSet.getString("client_code"), null, null, null, null, null));
+                creditRequest.setEmploye(new Employe(resultSet.getString("employe_matricule"), null));
+                creditRequest.setClient(new Client(resultSet.getString("client_code")));
 
                 creditRequests.add(creditRequest);
             }
@@ -190,8 +191,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
 
                 creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
                 creditRequest.setAgence(new Agence(resultSet.getString("agence_code"), null, null, null));
-                creditRequest.setEmploye(new Employe(null, null, null, null, null, resultSet.getString("employe_matricule"), null, null));
-                creditRequest.setClient(new Client(resultSet.getString("client_code"), null, null, null, null, null));
+                creditRequest.setEmploye(new Employe(resultSet.getString("employe_matricule"), null));
+                creditRequest.setClient(new Client(resultSet.getString("client_code")));
 
                 creditRequests.add(creditRequest);
             }

@@ -69,8 +69,7 @@ public class EmployeServlet extends HttpServlet {
         LocalDate dateN = LocalDate.parse(request.getParameter("dateN"));
         String tel = request.getParameter("tel");
         String adress = request.getParameter("adress");
-
-        Employe employe = new Employe(nom, prenom, dateN, tel, adress, matricule, dateRecrutement, emailAdresse);
+        Employe employe = new Employe(nom, prenom, dateN, tel, adress, emailAdresse, matricule, dateRecrutement);
 
         try {
             Optional<Personne> addedEmploye = employeService.add(employe);
@@ -128,8 +127,7 @@ public class EmployeServlet extends HttpServlet {
         String tel = request.getParameter("tel");
         String adress = request.getParameter("adress");
 
-        Employe employe = new Employe(nom, prenom, dateN, tel, adress, matricule, dateRecrutement, emailAdresse);
-
+        Employe employe = new Employe(nom, prenom, dateN, tel, adress, emailAdresse, matricule, dateRecrutement);
         Optional<Employe> updatedEmploye = employeService.Update(employe);
 
         if (updatedEmploye.isPresent()) {
