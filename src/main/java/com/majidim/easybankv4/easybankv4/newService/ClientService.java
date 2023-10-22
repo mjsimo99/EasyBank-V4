@@ -2,6 +2,7 @@ package com.majidim.easybankv4.easybankv4.newService;
 
 import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import com.majidim.easybankv4.easybankv4.dto.Client;
+import com.majidim.easybankv4.easybankv4.dto.Personne;
 
 import java.util.Optional;
 
@@ -12,6 +13,9 @@ public class ClientService {
         this.clientImpl =  clientImpl;
     }
 
+    public Optional<Client> create(Client client) {
+        return clientImpl.create(client);
+    }
     public Optional<Client> findByCode(String code) {
         return clientImpl.findByID(code);
     }
@@ -28,9 +32,6 @@ public class ClientService {
         return clientImpl.Update(client);
     }
 
-    public Optional<Personne> Add(Personne personne) {
-        return clientImpl.Add(personne);
-    }
 
     public List<Client> SearchByMatricule(String code) {
         return clientImpl.SearchByMatricule(code);

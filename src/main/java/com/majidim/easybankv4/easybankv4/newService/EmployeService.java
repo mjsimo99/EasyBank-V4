@@ -17,20 +17,22 @@ public class EmployeService {
 
         return employeImpl.findByID(matricule);
     }
-/*    public boolean Delete(String marticule){
-        return employeImpl.Delete(marticule);
+
+    /*    public boolean Delete(String marticule){
+            return employeImpl.Delete(marticule);
+        }
+        public List<Employe> ShowList(){
+            return employeImpl.ShowList();
+        }
+        public List<Employe> SearchByEmail(String emailAdresse){
+            return employeImpl.SearchByEmail(emailAdresse);
+        }
+        public Optional<Employe> Update(Employe employe){
+            return employeImpl.Update(employe);
+        }
+        */
+    public Optional<Employe> create(Employe employe) {
+        return employeImpl.create(employe);
     }
-    public List<Employe> ShowList(){
-        return employeImpl.ShowList();
-    }
-    public List<Employe> SearchByEmail(String emailAdresse){
-        return employeImpl.SearchByEmail(emailAdresse);
-    }
-    public Optional<Employe> Update(Employe employe){
-        return employeImpl.Update(employe);
-    }
-    public Optional<Personne> add(Personne personne) {
-        return employeImpl.Add(personne);
-    }*/
 
 }
