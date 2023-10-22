@@ -1,14 +1,19 @@
 package com.majidim.easybankv4.easybankv4.servlets;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Random;
 
 import com.majidim.easybankv4.easybankv4.HibernateImps.AgenceImp;
 import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
+import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
 import com.majidim.easybankv4.easybankv4.dto.Agence;
 import com.majidim.easybankv4.easybankv4.dto.Client;
-import com.majidim.easybankv4.easybankv4.service.ClientService;
+import com.majidim.easybankv4.easybankv4.dto.Employe;
+import com.majidim.easybankv4.easybankv4.newService.AgenceService;
+import com.majidim.easybankv4.easybankv4.newService.ClientService;
+import com.majidim.easybankv4.easybankv4.newService.EmployeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -47,7 +52,58 @@ public class HelloServlet extends HttpServlet {
     }
 
     @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AgenceService agenceService = new AgenceService(new AgenceImp());/*
+            Agence agence = new Agence();
+            agence.setCode(generateRandomString(4));
+            agence.setNom("nom");
+            agence.setAdresse("adresse");
+            agence.setTel("tel");*/
+        Agence agence = agenceService.findByCode("x").get();
+        System.out.println(agence.getAdresse());
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String method = req.getParameter("_METHOD");
+
+        if ("client".equals(method)){
+            System.out.println("client");
+            ClientService clientService = new ClientService(new ClientImpl());
+            Client client = new Client();
+            client.setCode(generateRandomString(5));
+            client.setTel("98989");
+            client.setNom("bouzhar");
+            client.setPrenom("prenom");
+            client.setAdress("jhjhd");
+            client.setDateN(LocalDate.now());
+            client.setEmailAdresse("email");
+            clientService.create(client);
+        }
+        else if ("employer".equals(method)) {
+            System.out.println("employer");
+            EmployeService employeService = new EmployeService(new EmployeImpl());
+            Employe employe = new Employe();
+            employe.setMatricule(generateRandomString(5));
+            employe.setNom("hibernate");
+            employe.setTel("0999000");
+            employe.setAdress("adresse");
+            employe.setPrenom("prenom");
+            employe.setEmailAdresse("email");
+            employe.setDateN(LocalDate.now());
+            employe.setDateRecrutement(LocalDate.now());
+            employeService.create(employe);
+        } else if("agence".equals(method)) {
+            AgenceService agenceService = new AgenceService(new AgenceImp());/*
+            Agence agence = new Agence();
+            agence.setCode(generateRandomString(4));
+            agence.setNom("nom");
+            agence.setAdresse("adresse");
+            agence.setTel("tel");*/
+            Agence agence = agenceService.findByCode("x").get();
+            System.out.println(agence.getAdresse());
+        }
         //DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
         //AgenceService agenceService = new AgenceService(new AgenceImp());
         //ClientService clientService = new ClientService(new ClientImpl());
@@ -56,6 +112,7 @@ public class HelloServlet extends HttpServlet {
             System.out.println(client.get().getNom());
             System.out.println(client.get().getTel());
         }*/
+
     }
 
     public void destroy() {
