@@ -1,26 +1,24 @@
 
-
+CREATE TABLE persons (
+                         nom VARCHAR(250),
+                         prenom VARCHAR(250),
+                         dateN DATE,
+                         numeroTel VARCHAR(50),
+                         adress VARCHAR(250),
+                         emailAdresse VARCHAR(250),
+                         createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                         updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 
 CREATE TABLE Employes (
                           matricule VARCHAR(255) PRIMARY KEY,
-                          dateRecrutement DATE,
-                          emailAdresse VARCHAR(255),
-                          nom VARCHAR(255),
-                          prenom VARCHAR(255),
-                          dateN DATE,
-                          tel VARCHAR(255),
-                          adress VARCHAR(255)
-)Inherits();
+                          dateRecrutement DATE
+)INHERITS(persons);
 
 CREATE TABLE Clients (
-                         code VARCHAR(255) PRIMARY KEY,
-                         nom VARCHAR(255),
-                         prenom VARCHAR(255),
-                         dateN DATE,
-                         tel VARCHAR(255),
-                         adress VARCHAR(255)
-);
+    code VARCHAR(255) PRIMARY KEY
+)INHERITS(persons);
 
 CREATE TABLE Missions (
                           code VARCHAR(255) PRIMARY KEY,
