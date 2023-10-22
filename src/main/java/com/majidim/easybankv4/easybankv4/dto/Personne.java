@@ -1,24 +1,32 @@
 package com.majidim.easybankv4.easybankv4.dto;
 
-import jakarta.persistence.MappedSuperclass;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 @Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
-public abstract class Personne {
-    protected String nom;
-    protected String prenom;
-    protected LocalDate dateN;
-    protected String tel;
-    protected String adress;
 
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(name = "persons")
+@MappedSuperclass
+@Table(name = "persons")
+public abstract class Personne {
+    @Column(name = "nom")
+    protected String nom;
+    @Column(name = "prenom")
+    protected String prenom;
+    @Column(name = "daten")
+    protected LocalDate dateN;
+    @Id
+    @Column(name = "numerotel")
+    protected String tel;
+    @Column(name = "adress")
+    protected String adress;
+    @Column(name = "emailadresse")
+    protected String emailAdresse;
 
 }
 
