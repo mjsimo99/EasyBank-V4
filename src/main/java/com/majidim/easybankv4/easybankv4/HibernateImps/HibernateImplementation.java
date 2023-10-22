@@ -1,6 +1,6 @@
 package com.majidim.easybankv4.easybankv4.HibernateImps;
 
-import com.majidim.easybankv4.easybankv4.interfeces.InterfaceData;
+import com.majidim.easybankv4.easybankv4.HibernateImps.Interfaces.InterfaceData;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

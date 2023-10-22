@@ -1,4 +1,4 @@
-package com.majidim.easybankv4.easybankv4.interfeces;
+package com.majidim.easybankv4.easybankv4.HibernateImps.Interfaces;
 
 import java.util.List;
 import java.util.Optional;
