@@ -1,26 +1,24 @@
 
-
+CREATE TABLE persons (
+                         nom VARCHAR(250),
+                         prenom VARCHAR(250),
+                         dateN DATE,
+                         numeroTel VARCHAR(50),
+                         adress VARCHAR(250),
+                         emailAdresse VARCHAR(250),
+                         createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                         updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 
 CREATE TABLE Employes (
                           matricule VARCHAR(255) PRIMARY KEY,
-                          dateRecrutement DATE,
-                          emailAdresse VARCHAR(255),
-                          nom VARCHAR(255),
-                          prenom VARCHAR(255),
-                          dateN DATE,
-                          tel VARCHAR(255),
-                          adress VARCHAR(255)
-);
+                          dateRecrutement DATE
+)INHERITS(persons);
 
 CREATE TABLE Clients (
-                         code VARCHAR(255) PRIMARY KEY,
-                         nom VARCHAR(255),
-                         prenom VARCHAR(255),
-                         dateN DATE,
-                         tel VARCHAR(255),
-                         adress VARCHAR(255)
-);
+    code VARCHAR(255) PRIMARY KEY
+)INHERITS(persons);
 
 CREATE TABLE Missions (
                           code VARCHAR(255) PRIMARY KEY,
@@ -85,17 +83,15 @@ CREATE TABLE DemendeCredits (
                                 montant DECIMAL(10, 2),
                                 duree VARCHAR(255),
                                 remarque VARCHAR(255),
-                                status VARCHAR(10),
+                                status VARCHAR(10) DEFAULT 'EnAttante',
                                 agence_code VARCHAR(255),
                                 FOREIGN KEY (agence_code) REFERENCES Agences(code),
                                 employe_matricule VARCHAR(255),
                                 FOREIGN KEY (employe_matricule) REFERENCES Employes(matricule),
                                 client_code VARCHAR(255),
-                                FOREIGN KEY (client_code) REFERENCES Clients(code),
-                                CHECK (status IN ('EnAttante', 'Accepte','Refuse'))
+                                FOREIGN KEY (client_code) REFERENCES Clients(code)
+                                
 );
-ALTER TABLE DemendeCredits
-    ADD simulation DECIMAL(10, 2);
 
 CREATE TABLE Operations (
                             numero VARCHAR(255) PRIMARY KEY,

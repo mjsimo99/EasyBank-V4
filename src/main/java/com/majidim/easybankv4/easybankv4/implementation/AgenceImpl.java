@@ -125,7 +125,7 @@ public class AgenceImpl implements IAgence {
                 String adresse = resultSet.getString("adresse");
                 String tel = resultSet.getString("tel");
 
-                Agence agence = new Agence(agenceCode, nom, adresse, tel, null, null, null);
+                Agence agence = new Agence(agenceCode, nom, adresse, tel);
                 agences.add(agence);
             }
         } catch (SQLException e) {
@@ -151,7 +151,7 @@ public class AgenceImpl implements IAgence {
                 String nom = resultSet.getString("nom");
                 String tel = resultSet.getString("tel");
 
-                Agence agence = new Agence(agenceCode, nom, adresse, tel, null, null, null);
+                Agence agence = new Agence(agenceCode, nom, adresse, tel);
                 agences.add(agence);
             }
         } catch (SQLException e) {
@@ -184,10 +184,7 @@ public class AgenceImpl implements IAgence {
                 resultSet.getString("code"),
                 resultSet.getString("nom"),
                 resultSet.getString("adresse"),
-                resultSet.getString("tel"),
-                null,
-                null,
-                null
+                resultSet.getString("tel")
         );
     }
 

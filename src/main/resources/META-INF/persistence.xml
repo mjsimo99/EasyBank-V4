@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-             version="3.0">
-  <persistence-unit name="default">
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_3_0.xsd"
+             version="2.2">
 
-  </persistence-unit>
+<persistence-unit name="myPersistence" transaction-type="RESOURCE_LOCAL">
+  <description>description</description>
+  <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+  <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+  <properties>
+    <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
+    <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/easybankv4" />
+    <property name="jakarta.persistence.jdbc.user" value="postgres" />
+    <property name="jakarta.persistence.jdbc.password" value="admin" />
+    <property name="show_sql" value="true"/>
+
+
+  </properties>
+</persistence-unit>
 </persistence>
