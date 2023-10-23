@@ -83,17 +83,15 @@ CREATE TABLE DemendeCredits (
                                 montant DECIMAL(10, 2),
                                 duree VARCHAR(255),
                                 remarque VARCHAR(255),
-                                status VARCHAR(10),
+                                status VARCHAR(10) DEFAULT 'EnAttante',
                                 agence_code VARCHAR(255),
                                 FOREIGN KEY (agence_code) REFERENCES Agences(code),
                                 employe_matricule VARCHAR(255),
                                 FOREIGN KEY (employe_matricule) REFERENCES Employes(matricule),
                                 client_code VARCHAR(255),
-                                FOREIGN KEY (client_code) REFERENCES Clients(code),
-                                CHECK (status IN ('EnAttante', 'Accepte','Refuse'))
+                                FOREIGN KEY (client_code) REFERENCES Clients(code)
+                                
 );
-ALTER TABLE DemendeCredits
-    ADD simulation DECIMAL(10, 2);
 
 CREATE TABLE Operations (
                             numero VARCHAR(255) PRIMARY KEY,
