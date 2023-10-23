@@ -35,7 +35,7 @@ function nextStep() {
         currentStep++;
         showStep(currentStep);
     }
-    if (currentStep === 2) {
+    if (currentStep === 3) {
         saveToLocalStorage();
     }
 }
@@ -55,12 +55,14 @@ function saveToLocalStorage() {
     var loanAmountInput = document.getElementById("loanAmount");
     var monthlyPaymentsInput = document.getElementById("monthlyPayments");
     var simulation = document.getElementById("result").textContent;
+    var code = document.getElementById("code");
 
     var simulationValue = parseFloat(simulation.match(/[\d.]+/));
 
-    localStorage.setItem("LoanAmount", loanAmountInput.value);
-    localStorage.setItem("MonthlyPayments", monthlyPaymentsInput.value);
-    localStorage.setItem("Simulation", simulationValue);
+    localStorage.setItem("montant", loanAmountInput.value);
+    localStorage.setItem("duree", monthlyPaymentsInput.value);
+    localStorage.setItem("simulation", simulationValue);
+    localStorage.setItem("code", code.value)
 }
 
 
@@ -101,3 +103,4 @@ function checkAndLoadClient() {
             console.error('Error:', error);
         });
 }
+

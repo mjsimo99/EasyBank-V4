@@ -49,7 +49,7 @@
                 <a class="nav-link link display-4" href="${pageContext.request.contextPath}../../employe">Employes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link display-4" href="../../view/simulation/simulation.jsp">Simulations</a>
+                <a class="nav-link link display-4" href="${pageContext.request.contextPath}../../demandeCredit">Simulations</a>
             </li>
         </ul>
         <div class="navbar-buttons mbr-section-btn right-phase">

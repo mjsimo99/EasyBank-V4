@@ -1,5 +1,5 @@
 <%@ include file="../includes/header.jsp" %>
-<div class="flex justify-center items-center mt-20 mb-20">
+<div class="flex justify-center items-center mt-40 mb-40">
     <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg w-full md:w-1/2 lg:w-1/3 text-center">
         <h1 class="text-3xl font-bold mb-4 text-blue-600">Multi-Step Form</h1>
 
@@ -42,7 +42,7 @@
                         <div class="relative">
                             <input class="input-cal input-base" name="code" id="code" placeholder="" type="text">
                             <label id="label-input">Enter Code Client</label>
-                            <button class="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600" id="searchClientButton" onclick="checkAndLoadClient()">Search</button>
+                            <button class="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600 mt-5" id="searchClientButton" onclick="checkAndLoadClient()">Search</button>
                         </div>
                     </div>
                 </div>
@@ -50,23 +50,31 @@
 
 
             <div id="step3" class="step">
-        <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
-            <div class="mb-4">
-                <label class="block font-semibold text-gray-700">Step 3: Mes infos personnelles</label>
-                <input class="form-inputs" type="hidden" name="action" value="edit">
-                <label for="nom">Last Name:</label>
-                <input class="form-inputs" type="text" id="nom" name="nom" value="" required><br>
-                <label for="prenom">First Name:</label>
-                <input class="form-inputs" type="text" id="prenom" name="prenom" value="" required><br>
-                <label for="dateN">Date of Birth (YYYY-MM-DD):</label>
-                <input class="form-inputs" type="date" id="dateN" name="dateN" value="" required><br>
-                <label for="tel">Phone:</label>
-                <input class="form-inputs" type="text" id="tel" name="tel" value="" required><br>
-                <label for="adress">Address:</label>
-                <input class="form-inputs" type="text" id="adress" name="adress" value="" required><br>
+                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
+                    <div class="mb-4">
+                        <label class="block font-semibold text-gray-700">Step 3: Mes infos personnelles</label>
+                        <input class="form-inputs" type="hidden" name="action" value="edit">
+                        <label for="nom">Last Name:</label>
+                        <input class="form-inputs" type="text" id="nom" name="nom" value="" required><br>
+                        <label for="prenom">First Name:</label>
+                        <input class="form-inputs" type="text" id="prenom" name=prenom" value="" required><br>
+                        <label for="dateN">Date of Birth (YYYY-MM-DD):</label>
+                        <input class="form-inputs" type="date" id="dateN" name="dateN" value="" required><br>
+                        <label for="dateN">Employe:</label>
+                        <select class="form-inputs" id="employeeSelect" name="employeeSelect" required>
+                            <option value="">Choose an employee</option>
+                            <c:forEach items="${employes}" var="employee">
+                                <option value="${employee.matricule}">${employee.nom} ${employee.prenom}</option>
+                            </c:forEach>
+                        </select>
+
+                        <label for="tel">Phone:</label>
+                        <input class="form-inputs" type="text" id="tel" name="tel" value="" required><br>
+                        <label for="adress">Address:</label>
+                        <input class="form-inputs" type="text" id="adress" name="adress" value="" required><br>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
     <div class="mt-4 flex justify-center">
         <button type="button" id="prevBtn" class="btn button-update mx-4" onclick="prevStep()">Previous</button>

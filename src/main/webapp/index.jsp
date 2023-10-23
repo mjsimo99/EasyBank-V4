@@ -30,13 +30,16 @@
     </button>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link link text-black display-4" href="index.jsp">Home</a>
+        <a class="nav-link link display-4" href="index.jsp">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link link text-black display-4" href="client">Clients</a>
+        <a class="nav-link link display-4" href="client">Clients</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link link text-black display-4" href="employe">Employees</a>
+        <a class="nav-link link display-4" href="employe">Employees</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link display-4" href="demandeCredit">Simulations</a>
       </li>
     </ul>
     <div class="navbar-buttons mbr-section-btn right-phase">

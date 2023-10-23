@@ -50,6 +50,8 @@ public class EmployeServlet extends HttpServlet {
         request.getRequestDispatcher("/view/employe/employelist.jsp").forward(request,response);
     }
 
+
+
     private void searchEmployes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
 
