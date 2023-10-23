@@ -121,23 +121,10 @@ public class HelloServlet extends HttpServlet {
             demendeCredit.setClient(client);
             demandeCreditService.create(demendeCredit);
         }
-        if ("demande".equals(method)) {
+        if ("client".equals(method)) {
 
-            Agence agence = agenceService.findByCode("Y54w").get();
-            Employe employe = employeService.findByMatricule("2cOM3").get();
-            Client client = clientService.findByCode("AoCgl").get();
-            DemendeCredit demendeCredit = new DemendeCredit();
-            demendeCredit.setNumero(generateRandomString(5));
-            demendeCredit.setMontant(300D);
-            demendeCredit.setRemarque("description");
-            demendeCredit.setDate(LocalDate.now());
-            demendeCredit.setDuree("5");
-            demendeCredit.setStatus("EnAttante");
-            demendeCredit.setDate(LocalDate.now());
-            demendeCredit.setEmploye(employe);
-            demendeCredit.setAgence(agence);
-            demendeCredit.setClient(client);
-            demandeCreditService.create(demendeCredit);
+            Client client = clientService.findByCode("1").get();
+            System.out.println("client name : "+client.getNom());
 
         }
 

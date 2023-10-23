@@ -3,6 +3,7 @@ package com.majidim.easybankv4.easybankv4.newService;
 import com.majidim.easybankv4.easybankv4.HibernateImps.DemandeCreditImpl;
 import com.majidim.easybankv4.easybankv4.dto.DemendeCredit;
 
+import java.util.List;
 import java.util.Optional;
 
 public class DemandeCreditService {
@@ -23,9 +24,14 @@ public class DemandeCreditService {
         return creditImpl.findByID(code);
     }
 
-/*    public List<DemendeCredit> ShowList() {
-        return creditImpl.ShowList();
+
+  public List<DemendeCredit> ShowList() {
+        return creditImpl.getAll();
     }
+    public boolean delete(DemendeCredit demendeCredit){
+        return creditImpl.delete(demendeCredit.getNumero());
+    }
+/*
 
     public List<DemendeCredit> SearchByStatus(CreditStatus status) {
         return creditImpl.SearchByStatus(status);

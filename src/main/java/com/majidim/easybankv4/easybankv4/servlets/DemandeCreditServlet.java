@@ -1,10 +1,10 @@
 package com.majidim.easybankv4.easybankv4.servlets;
 
+import com.majidim.easybankv4.easybankv4.HibernateImps.DemandeCreditImpl;
 import com.majidim.easybankv4.easybankv4.dto.*;
-import com.majidim.easybankv4.easybankv4.implementation.DemandeCreditImpl;
 import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
-import com.majidim.easybankv4.easybankv4.service.DemandeCreditService;
-import com.majidim.easybankv4.easybankv4.service.EmployeService;
+import com.majidim.easybankv4.easybankv4.newService.DemandeCreditService;
+import com.majidim.easybankv4.easybankv4.newService.EmployeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,7 +25,6 @@ public class DemandeCreditServlet extends HttpServlet {
     public void init() {
         this.demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
         this.employeService = new EmployeService(new EmployeImpl());
-
     }
 
     @Override
@@ -43,15 +42,13 @@ public class DemandeCreditServlet extends HttpServlet {
         }
     }
     private void listEmploye(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Employe> employes = employeService.ShowList();
+        List<Employe> employes = employeService.getAll();
         request.setAttribute("employes", employes);
-
-
         request.getRequestDispatcher("/view/simulation/simulation.jsp").forward(request, response);
     }
 
     private void populateEmployeeList(HttpServletRequest request) {
-        List<Employe> employeeList = employeService.ShowList();
+        List<Employe> employeeList = employeService.getAll();
         request.setAttribute("employeeList", employeeList);
     }
     private void showDemandeCreditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

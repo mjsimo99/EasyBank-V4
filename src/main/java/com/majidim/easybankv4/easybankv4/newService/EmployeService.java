@@ -19,5 +19,8 @@ public class EmployeService {
     public Optional<Employe> findByMatricule(String matricule){
         return employeImpl.findByID(matricule);
     }
+    public List<Employe> getAll(){
+        return employeImpl.getAll();
+    }
 
 }
