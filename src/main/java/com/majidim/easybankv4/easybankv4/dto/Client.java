@@ -6,20 +6,20 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Table(name = "Clients")
+
+@Entity(name = "Clients")
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Client extends Personne {
     @Id
     @Column(name = "code")
     private String code;
-    @OneToMany(mappedBy = "client")
+
+    @OneToMany
     private List<DemendeCredit> demendeCredits;
 
     public Client(String code, String nom, String prenom, LocalDate dateN, String tel, String adress, String emailAdresse) {

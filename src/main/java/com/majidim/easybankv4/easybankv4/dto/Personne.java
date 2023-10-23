@@ -20,7 +20,6 @@ public abstract class Personne {
     protected String prenom;
     @Column(name = "daten")
     protected LocalDate dateN;
-    @Id
     @Column(name = "numerotel")
     protected String tel;
     @Column(name = "adress")

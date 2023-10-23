@@ -45,11 +45,20 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
 
     @Override
     public Optional<Entity> findByID(Identifier id, Class<Entity> entityClass) {
+        /*System.out.println("class: " + entityClass);
+        System.out.println("id: " + id);
+        System.out.println("Type of id: " + id.getClass().getName()); // Debugging line*/
+
         try {
             em.getTransaction().begin();
-            Entity entity = em.find(entityClass, id);
+            try {
+                Entity entity = em.find(entityClass, id);
+                return Optional.ofNullable(entity);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
             em.getTransaction().commit();
-            return Optional.ofNullable(entity);
+                return Optional.empty(); // Return an empty Optional on error
         } catch (Exception e) {
             e.printStackTrace(); // Log the exception
             return Optional.empty(); // Return an empty Optional on error
@@ -59,7 +68,6 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
             }
         }
     }
-
 
 
     @Override

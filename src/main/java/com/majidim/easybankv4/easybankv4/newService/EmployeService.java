@@ -13,26 +13,11 @@ public class EmployeService {
     public EmployeService(EmployeImpl employeImpl) {
         this.employeImpl = employeImpl;
     }
-    public Optional<Employe> findByMatricule(String matricule){
-
-        return employeImpl.findByID(matricule);
-    }
-
-    /*    public boolean Delete(String marticule){
-            return employeImpl.Delete(marticule);
-        }
-        public List<Employe> ShowList(){
-            return employeImpl.ShowList();
-        }
-        public List<Employe> SearchByEmail(String emailAdresse){
-            return employeImpl.SearchByEmail(emailAdresse);
-        }
-        public Optional<Employe> Update(Employe employe){
-            return employeImpl.Update(employe);
-        }
-        */
     public Optional<Employe> create(Employe employe) {
         return employeImpl.create(employe);
+    }
+    public Optional<Employe> findByMatricule(String matricule){
+        return employeImpl.findByID(matricule);
     }
 
 }

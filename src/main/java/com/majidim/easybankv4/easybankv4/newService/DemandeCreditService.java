@@ -13,6 +13,9 @@ public class DemandeCreditService {
     }
 
     public Optional<DemendeCredit> create(DemendeCredit demendeCredit) {
+        System.out.println("numero"+demendeCredit.getNumero());
+        System.out.println("remarque"+demendeCredit.getRemarque());
+        System.out.println("status"+demendeCredit.getStatus());
         return creditImpl.create(demendeCredit);
     }
 

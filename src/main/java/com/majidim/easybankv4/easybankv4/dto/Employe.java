@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Entity
-@Table(name = "Employes")
+
+@Entity(name = "Employes")
 @Inheritance
 public class Employe extends Personne {
     @Id
@@ -21,7 +21,7 @@ public class Employe extends Personne {
     private String matricule;
     @Column(name = "daterecrutement")
     private LocalDate dateRecrutement;
-    @OneToMany(mappedBy = "employe")
+    @OneToMany
     private List<DemendeCredit> demendeCredits;
     public Employe(String nom, String prenom, LocalDate dateN, String tel, String adress, String emailAdresse,String matricule,LocalDate dateRecrutement) {
         super(nom, prenom, dateN, tel, adress, emailAdresse);

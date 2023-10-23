@@ -11,10 +11,10 @@ import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import com.majidim.easybankv4.easybankv4.dto.*;
 import com.majidim.easybankv4.easybankv4.newService.AgenceService;
 import com.majidim.easybankv4.easybankv4.newService.ClientService;
-/*import com.majidim.easybankv4.easybankv4.HibernateImps.DemandeCreditImpl;
+import com.majidim.easybankv4.easybankv4.HibernateImps.DemandeCreditImpl;
 import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
 import com.majidim.easybankv4.easybankv4.newService.DemandeCreditService;
-import com.majidim.easybankv4.easybankv4.newService.EmployeService;*/
+import com.majidim.easybankv4.easybankv4.newService.EmployeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -30,59 +30,21 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-        System.out.println("before service call");
-        ClientService clientService = new ClientService(new ClientImpl());
-        System.out.println("after service call");
-        
-        Client client = new Client();
-        client.setCode(generateRandomString(5));
-        client.setTel("98989");
-        client.setNom("bouzhar");
-        client.setPrenom("prenom");
-        client.setAdress("jhjhd");
-        client.setDateN(LocalDate.now());
-        client.setEmailAdresse("email");
-        client.setDemendeCredits(null);
-        clientService.create(client);
-        System.out.println("after create");
+
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AgenceService agenceService = new AgenceService(new AgenceImp());/*
-            Agence agence = new Agence();
-            agence.setCode(generateRandomString(4));
-            agence.setNom("nom");
-            agence.setAdresse("adresse");
-            agence.setTel("tel");*/
-        Agence agence = agenceService.findByCode("x").get();
-        System.out.println(agence.getAdresse());
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String method = req.getParameter("_METHOD");
 
-        /*if ("client".equals(method)){
+        if ("client".equals(method)) {
             System.out.println("client");
             ClientService clientService = new ClientService(new ClientImpl());
-            Client client = new Client();
-            client.setCode(generateRandomString(5));
-            client.setTel("98989");
-            client.setNom("bouzhar");
-            client.setPrenom("prenom");
-            client.setAdress("jhjhd");
-            client.setDateN(LocalDate.now());
-            client.setEmailAdresse("email");
-            client.setDemendeCredits(null);
-            //clientService.create(client);
-        }
-        else if ("employer".equals(method)) {
+            Client client = clientService.findByCode("AoCgl").get();
+            System.out.println(client.getNom());
+            System.out.println(client.getCode());
+
+        } else if ("employer".equals(method)) {
             System.out.println("employer");
             EmployeService employeService = new EmployeService(new EmployeImpl());
             Employe employe = new Employe();
@@ -95,7 +57,7 @@ public class HelloServlet extends HttpServlet {
             employe.setDateN(LocalDate.now());
             employe.setDateRecrutement(LocalDate.now());
             employeService.create(employe);
-        } else if("agence".equals(method)) {
+        } else if ("agence".equals(method)) {
             AgenceService agenceService = new AgenceService(new AgenceImp());
 
             Agence agence = new Agence();
@@ -105,13 +67,13 @@ public class HelloServlet extends HttpServlet {
             agence.setTel("tel");
             agenceService.create(agence);
 
-        } else if("demande".equals(method)) {
+        } else if ("demande".equals(method)) {
             EmployeService employeService = new EmployeService(new EmployeImpl());
             ClientService clientService = new ClientService(new ClientImpl());
             AgenceService agenceService = new AgenceService(new AgenceImp());
-            Employe employe = employeService.findByMatricule("2cOM3").get();
             Agence agence = agenceService.findByCode("Y54w").get();
-            Client client = clientService.findByCode("43q6e").get();
+            Employe employe = employeService.findByMatricule("2cOM3").get();
+            Client client = clientService.findByCode("AoCgl").get();
             DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
             DemendeCredit demendeCredit = new DemendeCredit();
             demendeCredit.setNumero(generateRandomString(5));
@@ -119,27 +81,53 @@ public class HelloServlet extends HttpServlet {
             demendeCredit.setRemarque("description");
             demendeCredit.setDate(LocalDate.now());
             demendeCredit.setDuree("5");
-            demendeCredit.setStatus(CreditStatus.EnAttante);
+            demendeCredit.setStatus("EnAttante");
             demendeCredit.setDate(LocalDate.now());
             demendeCredit.setEmploye(employe);
             demendeCredit.setAgence(agence);
             demendeCredit.setClient(client);
             demandeCreditService.create(demendeCredit);
 
-        }*/
-        //DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
-        //AgenceService agenceService = new AgenceService(new AgenceImp());
-        //ClientService clientService = new ClientService(new ClientImpl());
-        //Optional<Client> client = clientService.findByCode("1");
-/*        if (client.isPresent()){
-            System.out.println(client.get().getNom());
-            System.out.println(client.get().getTel());
-        }*/
+        }
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        EmployeService employeService = new EmployeService(new EmployeImpl());
+        ClientService clientService = new ClientService(new ClientImpl());
+        AgenceService agenceService = new AgenceService(new AgenceImp());
+        DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
+        String method = req.getParameter("_METHOD");
+         if ("demande".equals(method)) {
+            System.out.println("from demande");
+
+            Agence agence = agenceService.findByCode("agence").get();
+            Employe employe = employeService.findByMatricule("employer").get();
+            Client client = clientService.findByCode("1").get();
+
+            DemendeCredit demendeCredit = new DemendeCredit();
+            demendeCredit.setNumero(generateRandomString(5));
+            demendeCredit.setMontant(300D);
+            demendeCredit.setRemarque("description");
+            demendeCredit.setDate(LocalDate.now());
+            demendeCredit.setDuree("5");
+            demendeCredit.setStatus("EnAttante");
+            demendeCredit.setDate(LocalDate.now());
+            demendeCredit.setEmploye(employe);
+            demendeCredit.setAgence(agence);
+            demendeCredit.setClient(client);
+            demandeCreditService.create(demendeCredit);
+        }
+
 
     }
 
     public void destroy() {
     }
+
     public static String generateRandomString(int length) {
         // Characters that can be used in the random string
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -156,3 +144,61 @@ public class HelloServlet extends HttpServlet {
         return randomString.toString();
     }
 }
+/*
+if ("client".equals(method)) {
+            System.out.println("client");
+            EmployeService employeService = new EmployeService(new EmployeImpl());
+            Optional<Employe> opt = employeService.findByMatricule("2cOM3");
+            if (opt.isPresent()) {
+                Employe agence = opt.get();
+                System.out.println("nom " + agence.getNom());
+                System.out.println("nom " + agence.getMatricule());
+            }else{
+                System.out.println("not found");
+            }
+        } else if ("employer".equals(method)) {
+            System.out.println("employer");
+            EmployeService employeService = new EmployeService(new EmployeImpl());
+            Employe employe = new Employe();
+            employe.setMatricule(generateRandomString(5));
+            employe.setNom("hibernate");
+            employe.setTel("0999000");
+            employe.setAdress("adresse");
+            employe.setPrenom("prenom");
+            employe.setEmailAdresse("email");
+            employe.setDateN(LocalDate.now());
+            employe.setDateRecrutement(LocalDate.now());
+            employeService.create(employe);
+        } else if ("agence".equals(method)) {
+            AgenceService agenceService = new AgenceService(new AgenceImp());
+
+            Agence agence = new Agence();
+            agence.setCode(generateRandomString(4));
+            agence.setNom("nom");
+            agence.setAdresse("adresse");
+            agence.setTel("tel");
+            agenceService.create(agence);
+
+        } else if ("demande".equals(method)) {
+            EmployeService employeService = new EmployeService(new EmployeImpl());
+            ClientService clientService = new ClientService(new ClientImpl());
+            AgenceService agenceService = new AgenceService(new AgenceImp());
+            Agence agence = agenceService.findByCode("Y54w").get();
+            Employe employe = employeService.findByMatricule("2cOM3").get();
+            Client client = clientService.findByCode("AoCgl").get();
+            DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
+            DemendeCredit demendeCredit = new DemendeCredit();
+            demendeCredit.setNumero(generateRandomString(5));
+            demendeCredit.setMontant(300D);
+            demendeCredit.setRemarque("description");
+            demendeCredit.setDate(LocalDate.now());
+            demendeCredit.setDuree("5");
+            demendeCredit.setStatus(CreditStatus.EnAttante);
+            demendeCredit.setDate(LocalDate.now());
+            demendeCredit.setEmploye(employe);
+            demendeCredit.setAgence(agence);
+            demendeCredit.setClient(client);
+            demandeCreditService.create(demendeCredit);
+
+        }
+* */

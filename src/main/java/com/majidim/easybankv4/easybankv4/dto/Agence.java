@@ -10,8 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
-@Table(name="Agences")
+
+@Entity(name="Agences")
 public class Agence {
     public Agence(String code, String nom, String adresse, String tel) {
         this.code = code;
@@ -29,7 +29,7 @@ public class Agence {
     private String adresse;
     @Column(name = "tel")
     private String tel;
-    @OneToMany(mappedBy = "agence")
+    @OneToMany
     private List<DemendeCredit> demendeCredits;
 
     /*@OneToMany(mappedBy = "agence")

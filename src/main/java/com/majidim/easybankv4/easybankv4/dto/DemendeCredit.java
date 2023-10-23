@@ -9,8 +9,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Entity
-@Table(name = "DemendeCredits" )
+
+@Entity(name = "DemendeCredits" )
 public class DemendeCredit {
     @Id
     private String numero;
@@ -23,17 +23,17 @@ public class DemendeCredit {
     @Column
     private String remarque;
     @Column
-    private CreditStatus status;
+    private String status;
     @ManyToOne
-    @JoinColumn(name = "employe_matricule")
+
     private Employe employe;
 
     @ManyToOne
-    @JoinColumn(name = "client_code")
+
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "agence_code")
+
     private Agence agence;
 
 }

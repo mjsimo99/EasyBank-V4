@@ -67,7 +67,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setMontant(resultSet.getDouble("montant"));
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
-                creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                //creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                creditRequest.setStatus(resultSet.getString("status"));
                 creditRequest.setAgence(agence);
                 Employe employe = new Employe();
                 employe.setMatricule(resultSet.getString("employe_matricule"));
@@ -99,7 +100,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setMontant(resultSet.getDouble("montant"));
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
-                creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                //creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                creditRequest.setStatus(resultSet.getString("status"));
                 Agence agence = new Agence();
                 agence.setCode(resultSet.getString("agence_code"));
                 creditRequest.setAgence(agence);
@@ -134,7 +136,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setMontant(resultSet.getDouble("montant"));
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
-                creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                //creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                creditRequest.setStatus(resultSet.getString("status"));
                 Agence agence = new Agence();
                 agence.setCode(resultSet.getString("agence_code"));
                 creditRequest.setAgence(agence);
@@ -171,7 +174,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
 
-                creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                //creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                creditRequest.setStatus(resultSet.getString("status"));
                 Agence agence = new Agence();
                 agence.setCode(resultSet.getString("agence_code"));
                 creditRequest.setAgence(agence);
@@ -210,7 +214,8 @@ public class DemandeCreditImpl implements IDemendeCredit {
                 creditRequest.setDuree(resultSet.getString("duree"));
                 creditRequest.setRemarque(resultSet.getString("remarque"));
 
-                creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                //creditRequest.setStatus(CreditStatus.valueOf(resultSet.getString("status")));
+                creditRequest.setStatus(resultSet.getString("status"));
                 Agence agence = new Agence();
                 agence.setCode(resultSet.getString("agence_code"));
                 creditRequest.setAgence(agence);
