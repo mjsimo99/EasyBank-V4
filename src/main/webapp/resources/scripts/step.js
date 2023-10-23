@@ -80,11 +80,11 @@ function checkAndLoadClient() {
     fetch('http://localhost:8080/searchClient?code=' + clientCode)
         .then(response => response.text())
         .then(clientDetails => {
-            console.log("Client Details:", clientDetails); // Debugging line
+            console.log("Client Details:", clientDetails);
 
             if (clientDetails) {
                 var detailsArray = clientDetails.split("\n");
-                console.log("Details Array:", detailsArray); // Debugging line
+                console.log("Details Array:", detailsArray);
 
                 document.getElementById("nom").value = detailsArray[0].substring("Last Name: ".length);
                 document.getElementById("prenom").value = detailsArray[1].substring("First Name: ".length);

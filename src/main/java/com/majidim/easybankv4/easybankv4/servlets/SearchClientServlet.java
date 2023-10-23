@@ -29,7 +29,7 @@ public class SearchClientServlet extends HttpServlet {
 
         if (!clients.isEmpty()) {
             Client client = clients.get(0);
-            String clientDetails = "Last Name: " + client.getNom() +
+            String clientDetails = " Last Name: "+ client.getNom() +
                     "\nFirst Name: " + client.getPrenom() +
                     "\nDate of Birth: " + client.getDateN() +
                     "\nPhone: " + client.getTel() +
