@@ -2,18 +2,19 @@ package com.majidim.easybankv4.easybankv4.servlets;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 import com.majidim.easybankv4.easybankv4.HibernateImps.AgenceImp;
 import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
-import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
-import com.majidim.easybankv4.easybankv4.dto.Agence;
-import com.majidim.easybankv4.easybankv4.dto.Client;
-import com.majidim.easybankv4.easybankv4.dto.Employe;
+import com.majidim.easybankv4.easybankv4.dto.*;
 import com.majidim.easybankv4.easybankv4.newService.AgenceService;
 import com.majidim.easybankv4.easybankv4.newService.ClientService;
-import com.majidim.easybankv4.easybankv4.newService.EmployeService;
+/*import com.majidim.easybankv4.easybankv4.HibernateImps.DemandeCreditImpl;
+import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
+import com.majidim.easybankv4.easybankv4.newService.DemandeCreditService;
+import com.majidim.easybankv4.easybankv4.newService.EmployeService;*/
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -33,22 +34,21 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
-/*
-* demendeCredit.setAgence();
-        demendeCredit.setMontant();
-        demendeCredit.setNumero();
-        demendeCredit.setEmploye();
-        demendeCredit.setRemarque(); */
-
-        /*EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPersistence");
-        EntityManager em = emf.createEntityManager(); //represent the context*/
-/*        Agence agence = new Agence();
-        agence.setAdresse("without");
-        agence.setNom("persist");
-        agence.setTel(generateRandomString(3));
-        agence.setCode(generateRandomString(10));
-        AgenceService agenceService = new AgenceService(new AgenceImp());
-        agenceService.create(agence);*/
+        System.out.println("before service call");
+        ClientService clientService = new ClientService(new ClientImpl());
+        System.out.println("after service call");
+        
+        Client client = new Client();
+        client.setCode(generateRandomString(5));
+        client.setTel("98989");
+        client.setNom("bouzhar");
+        client.setPrenom("prenom");
+        client.setAdress("jhjhd");
+        client.setDateN(LocalDate.now());
+        client.setEmailAdresse("email");
+        client.setDemendeCredits(null);
+        clientService.create(client);
+        System.out.println("after create");
     }
 
     @Override
@@ -68,7 +68,7 @@ public class HelloServlet extends HttpServlet {
 
         String method = req.getParameter("_METHOD");
 
-        if ("client".equals(method)){
+        /*if ("client".equals(method)){
             System.out.println("client");
             ClientService clientService = new ClientService(new ClientImpl());
             Client client = new Client();
@@ -79,7 +79,8 @@ public class HelloServlet extends HttpServlet {
             client.setAdress("jhjhd");
             client.setDateN(LocalDate.now());
             client.setEmailAdresse("email");
-            clientService.create(client);
+            client.setDemendeCredits(null);
+            //clientService.create(client);
         }
         else if ("employer".equals(method)) {
             System.out.println("employer");
@@ -95,15 +96,37 @@ public class HelloServlet extends HttpServlet {
             employe.setDateRecrutement(LocalDate.now());
             employeService.create(employe);
         } else if("agence".equals(method)) {
-            AgenceService agenceService = new AgenceService(new AgenceImp());/*
+            AgenceService agenceService = new AgenceService(new AgenceImp());
+
             Agence agence = new Agence();
             agence.setCode(generateRandomString(4));
             agence.setNom("nom");
             agence.setAdresse("adresse");
-            agence.setTel("tel");*/
-            Agence agence = agenceService.findByCode("x").get();
-            System.out.println(agence.getAdresse());
-        }
+            agence.setTel("tel");
+            agenceService.create(agence);
+
+        } else if("demande".equals(method)) {
+            EmployeService employeService = new EmployeService(new EmployeImpl());
+            ClientService clientService = new ClientService(new ClientImpl());
+            AgenceService agenceService = new AgenceService(new AgenceImp());
+            Employe employe = employeService.findByMatricule("2cOM3").get();
+            Agence agence = agenceService.findByCode("Y54w").get();
+            Client client = clientService.findByCode("43q6e").get();
+            DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
+            DemendeCredit demendeCredit = new DemendeCredit();
+            demendeCredit.setNumero(generateRandomString(5));
+            demendeCredit.setMontant(300D);
+            demendeCredit.setRemarque("description");
+            demendeCredit.setDate(LocalDate.now());
+            demendeCredit.setDuree("5");
+            demendeCredit.setStatus(CreditStatus.EnAttante);
+            demendeCredit.setDate(LocalDate.now());
+            demendeCredit.setEmploye(employe);
+            demendeCredit.setAgence(agence);
+            demendeCredit.setClient(client);
+            demandeCreditService.create(demendeCredit);
+
+        }*/
         //DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
         //AgenceService agenceService = new AgenceService(new AgenceImp());
         //ClientService clientService = new ClientService(new ClientImpl());

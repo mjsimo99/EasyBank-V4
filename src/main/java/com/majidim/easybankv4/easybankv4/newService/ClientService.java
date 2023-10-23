@@ -10,10 +10,12 @@ public class ClientService {
     private final ClientImpl clientImpl;
 
     public ClientService(ClientImpl clientImpl) {
+        System.out.println("client service constructor");
         this.clientImpl =  clientImpl;
     }
 
     public Optional<Client> create(Client client) {
+        System.out.println("from create");
         return clientImpl.create(client);
     }
     public Optional<Client> findByCode(String code) {

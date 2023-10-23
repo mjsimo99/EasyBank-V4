@@ -13,6 +13,13 @@ import java.util.List;
 @Entity
 @Table(name="Agences")
 public class Agence {
+    public Agence(String code, String nom, String adresse, String tel) {
+        this.code = code;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.tel = tel;
+    }
+
     @Id
     @Column(name = "code")
     private String code;
@@ -22,8 +29,12 @@ public class Agence {
     private String adresse;
     @Column(name = "tel")
     private String tel;
-    /*private List<DemendeCredit> demendeCredits;
+    @OneToMany(mappedBy = "agence")
+    private List<DemendeCredit> demendeCredits;
+
+    /*@OneToMany(mappedBy = "agence")
     private List<Compte> comptes;
+    @OneToMany(mappedBy = "agence")
     private List<EmployeAgency> employeAgencies;*/
 
 
