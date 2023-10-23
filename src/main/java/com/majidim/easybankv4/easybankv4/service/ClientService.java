@@ -1,9 +1,9 @@
 package com.majidim.easybankv4.easybankv4.service;
 
 import com.majidim.easybankv4.easybankv4.dto.Client;
+import com.majidim.easybankv4.easybankv4.dto.Employe;
 import com.majidim.easybankv4.easybankv4.dto.Personne;
-import com.majidim.easybankv4.easybankv4.implementation.ClientImpl;
-
+import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,29 +14,26 @@ public class ClientService {
         this.clientImpl =  clientImpl;
     }
 
-    public List<Client> SearchByCode(String code) {
-        return clientImpl.SearchByCode(code);
+    public Optional<Client> SearchByCode(String code) {
+        return clientImpl.findByID(code);
     }
 
     public boolean Delete(String code) {
-        return clientImpl.Delete(code);
+        return clientImpl.delete(code);
     }
 
     public List<Client> Showlist() {
-        return clientImpl.Showlist();
+        return clientImpl.getAll();
     }
 
     public Optional<Client> Update(Client client) {
-        return clientImpl.Update(client);
+        return clientImpl.update(client);
     }
 
-    public Optional<Personne> Add(Personne personne) {
-        return clientImpl.Add(personne);
+    public Optional<Client> Add(Client client) {
+        return clientImpl.create(client);
     }
 
-    public List<Client> SearchByMatricule(String code) {
-        return clientImpl.SearchByMatricule(code);
-    }
 
 }
 

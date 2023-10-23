@@ -1,8 +1,8 @@
 package com.majidim.easybankv4.easybankv4.servlets;
 
+import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import com.majidim.easybankv4.easybankv4.dto.Client;
 import com.majidim.easybankv4.easybankv4.dto.Personne;
-import com.majidim.easybankv4.easybankv4.implementation.ClientImpl;
 import com.majidim.easybankv4.easybankv4.service.ClientService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -44,8 +44,8 @@ public class ClientServlet extends HttpServlet {
     }
     private void searchClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
-        List<Client> searchResults = clientService.SearchByMatricule(query);
-        request.setAttribute("clients", searchResults);
+        Optional<Client> optClient = clientService.SearchByCode(query);
+        request.setAttribute("clients", optClient);
         request.getRequestDispatcher("/view/client/clientlist.jsp").forward(request, response);
     }
 
@@ -62,9 +62,9 @@ public class ClientServlet extends HttpServlet {
     private void editClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         if (code != null) {
-            List<Client> clients = clientService.SearchByCode(code);
-            if (!clients.isEmpty()) {
-                Client client = clients.get(0);
+            Optional<Client> optClient = clientService.SearchByCode(code);
+            if (!optClient.isEmpty()) {
+                Client client = optClient.get();
                 request.setAttribute("client", client);
                 request.getRequestDispatcher("/view/client/clientedit.jsp").forward(request, response);
             } else {
@@ -129,7 +129,8 @@ public class ClientServlet extends HttpServlet {
         Client client = new Client(code, nom, prenom, dateN, tel, adress,emailadresse);
 
         try {
-            Optional<Personne> addedClient = clientService.Add(client);
+
+            Optional<Client> addedClient = clientService.Add(client);
             if (addedClient.isPresent()) {
                 request.setAttribute("successMessage", "Client added successfully!");
             } else {

@@ -2,7 +2,7 @@ package com.majidim.easybankv4.easybankv4.servlets;
 
 import com.majidim.easybankv4.easybankv4.dto.*;
 import com.majidim.easybankv4.easybankv4.implementation.DemandeCreditImpl;
-import com.majidim.easybankv4.easybankv4.implementation.EmployeImpl;
+import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
 import com.majidim.easybankv4.easybankv4.service.DemandeCreditService;
 import com.majidim.easybankv4.easybankv4.service.EmployeService;
 import jakarta.servlet.ServletException;

@@ -11,6 +11,6 @@ public interface IClient extends IPersonne {
     boolean Delete(String code);
     List<Client> Showlist();
     Optional<Client> Update(Client client);
-    List<Client> SearchByMatricule(String code);
+
 
 }

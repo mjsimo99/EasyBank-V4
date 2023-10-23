@@ -2,7 +2,7 @@ package com.majidim.easybankv4.easybankv4.servlets;
 
 import com.majidim.easybankv4.easybankv4.dto.Employe;
 import com.majidim.easybankv4.easybankv4.dto.Personne;
-import com.majidim.easybankv4.easybankv4.implementation.EmployeImpl;
+import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
 import com.majidim.easybankv4.easybankv4.service.EmployeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -34,7 +34,7 @@ public class EmployeServlet extends HttpServlet {
             case "add" -> addEmploye(request,response);
             case "edit" -> editEmploye(request, response);
             case "update" -> updateEmploye(request, response);
-            case "search" -> searchEmployes(request, response);
+            //case "search" -> searchEmployes(request, response);
             case "delete" -> deleteEmploye(request, response);
             default -> listEmploye(request,response);
         }
@@ -52,14 +52,14 @@ public class EmployeServlet extends HttpServlet {
 
 
 
-    private void searchEmployes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /*private void searchEmployes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
 
         List<Employe> searchResults = employeService.SearchByEmail(query);
 
         request.setAttribute("employes", searchResults);
         request.getRequestDispatcher("/view/employe/employelist.jsp").forward(request,response);
-    }
+    }*/
 
 
     private void addEmploye(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,7 +74,7 @@ public class EmployeServlet extends HttpServlet {
         Employe employe = new Employe(nom, prenom, dateN, tel, adress, emailAdresse, matricule, dateRecrutement);
 
         try {
-            Optional<Personne> addedEmploye = employeService.add(employe);
+            Optional<Employe> addedEmploye = employeService.add(employe);
             if (addedEmploye.isPresent()) {
                 request.setAttribute("successMessage", "Employee added successfully!");
             } else {
@@ -106,10 +106,10 @@ public class EmployeServlet extends HttpServlet {
     private void editEmploye(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricule = request.getParameter("matricule");
         if (matricule != null) {
-            List<Employe> employes = employeService.SearchByMatricule(matricule);
-            if (!employes.isEmpty()) {
-                Employe employe = employes.get(0);
-                request.setAttribute("employe", employe);
+            Optional<Employe> optEmp = employeService.SearchByMatricule(matricule);
+            if (!optEmp.isEmpty()) {
+                Employe employer = optEmp.get();
+                request.setAttribute("employe", employer);
                 request.getRequestDispatcher("/view/employe/employeedit.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/employe");
