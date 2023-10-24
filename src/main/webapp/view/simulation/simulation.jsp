@@ -65,9 +65,9 @@
                         <label for="dateN">Employe:</label>
                         <select class="form-inputs" id="employeeSelect" name="employeeSelect" required>
                             <option value="">Choose an employee</option>
-                            <%--<c:forEach items="${employes}" var="employee">
+                            <x:forEach items="${employes}" var="employee">
                                 <option value="${employee.matricule}">${employee.nom} ${employee.prenom}</option>
-                            </c:forEach>--%>
+                            </x:forEach>
                         </select>
 
                         <label for="tel">Phone:</label>
