@@ -43,6 +43,7 @@ public class DemandeCreditServlet extends HttpServlet {
     }
     private void listEmploye(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Employe> employes = employeService.getAll();
+        System.out.println("listEmploye : "+employes.size());
         request.setAttribute("employes", employes);
         request.getRequestDispatcher("/view/simulation/simulation.jsp").forward(request, response);
     }

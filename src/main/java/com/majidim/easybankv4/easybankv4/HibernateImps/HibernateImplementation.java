@@ -6,25 +6,28 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import com.majidim.easybankv4.easybankv4.dto.*;
+import com.majidim.easybankv4.easybankv4.dto.Employe;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 public class HibernateImplementation<Entity, Identifier> implements InterfaceData<Entity, Identifier> {
-    private final EntityManager em;
+    private final EntityManagerFactory emf;
 
     public HibernateImplementation() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPersistence");
-        em = emf.createEntityManager(); //represent the context
+
+        emf = Persistence.createEntityManagerFactory("myPersistence");
     }
 
     public HibernateImplementation(EntityManager em) {
-        this.em = em;
+
+        emf = Persistence.createEntityManagerFactory("myPersistence");
     }
 
     @Override
     public Optional<Entity> create(Entity entity) {
+            EntityManager em = emf.createEntityManager(); //represent the context
         try {
             em.getTransaction().begin();
             em.persist(entity);
@@ -48,7 +51,7 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
     @Override
     public Optional<Entity> findByID(Identifier id, Class<Entity> entityClass) {
 
-
+        EntityManager em = emf.createEntityManager(); //represent the context
         try {
             em.getTransaction().begin();
             try {
@@ -72,18 +75,21 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
 
     @Override
     public List<Entity> getAll(Class<Entity> entityClass) {
+        EntityManager em = emf.createEntityManager(); //represent the context
         try {
-            System.out.println("from befor getall");
+
             em.getTransaction().begin();
 
             // Use JPQL (Java Persistence Query Language) to create a query to select all entities
             String jpql = "SELECT e FROM " + entityClass.getSimpleName() + " e";
+
             TypedQuery<Entity> query = em.createQuery(jpql, entityClass);
+
 
             List<Entity> resultList = query.getResultList();
 
             em.getTransaction().commit();
-            System.out.println("from after getall");
+
             return resultList;
         } catch (Exception e) {
             e.printStackTrace(); // Log the exception
@@ -94,7 +100,18 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
             }
         }
     }
-
+/*    public List<Employe> findAll() {
+        EntityManager em = emf.createEntityManager(); //represent the context
+        try {
+            em.getTransaction().begin();
+            List<Employe> employees = em.createQuery("SELECT e FROM Employe e", Employe.class).getResultList();
+            em.getTransaction().commit();
+            return employees;
+        } catch (Exception e) {
+            System.out.println(e.getClass() + "::" + e.getMessage());
+        }
+        return null;
+    }*/
     @Override
     public boolean delete(Identifier id) {
         return false;

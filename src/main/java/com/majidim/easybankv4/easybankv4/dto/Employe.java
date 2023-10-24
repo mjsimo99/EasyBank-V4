@@ -13,7 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 
 
-@Entity(name = "Employes")
+@Entity()
+@Table(name = "Employes")
 @Inheritance
 public class Employe extends Personne {
     @Id

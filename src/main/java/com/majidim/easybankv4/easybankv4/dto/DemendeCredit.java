@@ -10,7 +10,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 
 
-@Entity(name = "DemendeCredits" )
+@Entity
+@Table(name = "DemendeCredits")
 public class DemendeCredit {
     @Id
     private String numero;

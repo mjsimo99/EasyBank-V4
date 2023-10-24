@@ -12,6 +12,7 @@ public class EmployeImpl extends HibernateImplementation<Employe, String> implem
         return super.findByID(id, Employe.class);
     }
     public List<Employe> getAll(){
+
         return getAll(Employe.class);
     }
 }
