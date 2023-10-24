@@ -50,8 +50,8 @@ public class ClientServlet extends HttpServlet {
     }
 
     private void listClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         List<Client> clients = clientService.Showlist();
+        System.out.println("clients size"+clients.size());
 
         request.setAttribute("clients", clients);
         request.getRequestDispatcher("/view/client/clientlist.jsp").forward(request, response);

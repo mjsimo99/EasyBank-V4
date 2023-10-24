@@ -4,8 +4,10 @@ import com.majidim.easybankv4.easybankv4.HibernateImps.Interfaces.InterfaceData;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+import com.majidim.easybankv4.easybankv4.dto.*;
 
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +58,7 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
                 System.out.println(e.getMessage());
             }
             em.getTransaction().commit();
-                return Optional.empty();
+            return Optional.empty();
         } catch (Exception e) {
             e.printStackTrace();
             return Optional.empty();
@@ -69,8 +71,28 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
 
 
     @Override
-    public List<Entity> getAll() {
-        return null;
+    public List<Entity> getAll(Class<Entity> entityClass) {
+        try {
+            System.out.println("from befor getall");
+            em.getTransaction().begin();
+
+            // Use JPQL (Java Persistence Query Language) to create a query to select all entities
+            String jpql = "SELECT e FROM " + entityClass.getSimpleName() + " e";
+            TypedQuery<Entity> query = em.createQuery(jpql, entityClass);
+
+            List<Entity> resultList = query.getResultList();
+
+            em.getTransaction().commit();
+            System.out.println("from after getall");
+            return resultList;
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception
+            return Collections.emptyList(); // Return an empty list on error
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
     }
 
     @Override

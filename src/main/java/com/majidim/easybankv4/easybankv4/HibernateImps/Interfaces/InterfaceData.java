@@ -10,7 +10,7 @@ public interface InterfaceData<Entity, Identifier> {
 
     public Optional<Entity> findByID(Identifier id,Class<Entity> entityClass);
 
-    public List<Entity> getAll();
+    public List<Entity> getAll(Class<Entity> entityClass);
 
     public boolean delete(Identifier id);
 }
