@@ -1,10 +1,7 @@
 package com.majidim.easybankv4.easybankv4.HibernateImps;
 
 import com.majidim.easybankv4.easybankv4.HibernateImps.Interfaces.InterfaceData;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import com.majidim.easybankv4.easybankv4.dto.*;
 import com.majidim.easybankv4.easybankv4.dto.Employe;
 
@@ -100,20 +97,35 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
             }
         }
     }
-/*    public List<Employe> findAll() {
+
+    @Override
+    public boolean delete(Identifier id, Class<Entity> entityClass) {
         EntityManager em = emf.createEntityManager(); //represent the context
         try {
             em.getTransaction().begin();
-            List<Employe> employees = em.createQuery("SELECT e FROM Employe e", Employe.class).getResultList();
-            em.getTransaction().commit();
-            return employees;
+            try {
+                Entity entity = em.find(entityClass, id);
+                if (entity != null) {
+                    em.remove(entity);
+                    em.getTransaction().commit();
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (EntityNotFoundException e) {
+                return false; // Entity not found
+            } catch (Exception e) {
+                //e.printStackTrace();
+                return false;
+            } finally {
+                if (em.isOpen()) {
+                    em.close();
+                }
+            }
         } catch (Exception e) {
-            System.out.println(e.getClass() + "::" + e.getMessage());
+            e.printStackTrace();
+            return false;
         }
-        return null;
-    }*/
-    @Override
-    public boolean delete(Identifier id) {
-        return false;
     }
+
 }

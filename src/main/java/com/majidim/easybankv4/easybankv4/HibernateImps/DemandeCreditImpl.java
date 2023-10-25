@@ -14,4 +14,7 @@ public class DemandeCreditImpl extends HibernateImplementation<DemendeCredit , S
     public List<DemendeCredit> getAll(){
         return getAll(DemendeCredit.class);
     }
+    public boolean delete(String code){
+        return delete(code,DemendeCredit.class);
+    }
 }

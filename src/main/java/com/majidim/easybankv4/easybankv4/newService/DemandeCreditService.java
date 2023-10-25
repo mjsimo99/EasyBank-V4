@@ -28,8 +28,8 @@ public class DemandeCreditService {
         return creditImpl.getAll();
     }
 
-    public boolean delete(DemendeCredit demendeCredit) {
-        return creditImpl.delete(demendeCredit.getNumero());
+    public boolean delete(String numero) {
+        return creditImpl.delete(numero);
     }
     private boolean validate(DemendeCredit demendeCredit) {
         return (Math.abs(calculeMensualite(demendeCredit) - demendeCredit.getSimulation()) < tolerance);

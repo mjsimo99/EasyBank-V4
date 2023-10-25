@@ -7,4 +7,7 @@ import java.util.Optional;
 public interface IHDemandeCredit extends InterfaceData<DemendeCredit, String> {
     @Override
     Optional<DemendeCredit> findByID(String id, Class<DemendeCredit> demendeCreditClass);
+
+    @Override
+    boolean delete(String id, Class<DemendeCredit> demendeCreditClass);
 }
