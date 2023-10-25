@@ -22,12 +22,12 @@ public class EmployeService {
     public List<Employe> ShowList(){
         return employeImpl.getAll();
     }
-    /*public List<Employe> SearchByEmail(String emailAdresse){
-        return employeImpl.SearchByEmail(emailAdresse);
-    }*/
     public Optional<Employe> Update(Employe employe){
         return employeImpl.update(employe);
     }
+    /*public List<Employe> SearchByEmail(String emailAdresse){
+        return employeImpl.SearchByEmail(emailAdresse);
+    }*/
     public Optional<Employe> add(Employe employe) {
         return employeImpl.create(employe);
     }

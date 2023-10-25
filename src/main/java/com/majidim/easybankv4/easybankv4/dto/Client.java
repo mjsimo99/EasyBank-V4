@@ -7,20 +7,23 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-@Entity()
-@Table(name = "Clients")
 
-@Getter
 @Setter
+@Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+
+
+@Entity()
+@Table(name = "Clients")
+@Inheritance
 public class Client extends Personne {
     @Id
     @Column(name = "code")
     private String code;
 
-    @OneToMany
+    @OneToMany(mappedBy = "client")
     private List<DemendeCredit> demendeCredits;
 
     public Client(String code, String nom, String prenom, LocalDate dateN, String tel, String adress, String emailAdresse) {

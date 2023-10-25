@@ -100,19 +100,25 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
 
     @Override
     public boolean delete(Identifier id, Class<Entity> entityClass) {
+        System.out.println("id "+id);
+        System.out.println("entity class "+entityClass);
         EntityManager em = emf.createEntityManager(); //represent the context
         try {
             em.getTransaction().begin();
             try {
                 Entity entity = em.find(entityClass, id);
                 if (entity != null) {
+                    System.out.println("found entity");
                     em.remove(entity);
+
                     em.getTransaction().commit();
                     return true;
                 } else {
                     return false;
                 }
             } catch (EntityNotFoundException e) {
+                System.out.println("couldn't find entity");
+                System.out.println(e.getMessage());
                 return false; // Entity not found
             } catch (Exception e) {
                 //e.printStackTrace();

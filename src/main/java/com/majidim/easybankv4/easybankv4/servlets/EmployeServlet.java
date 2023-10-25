@@ -3,7 +3,7 @@ package com.majidim.easybankv4.easybankv4.servlets;
 import com.majidim.easybankv4.easybankv4.dto.Employe;
 import com.majidim.easybankv4.easybankv4.dto.Personne;
 import com.majidim.easybankv4.easybankv4.HibernateImps.EmployeImpl;
-import com.majidim.easybankv4.easybankv4.service.EmployeService;
+import com.majidim.easybankv4.easybankv4.newService.EmployeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -74,7 +74,7 @@ public class EmployeServlet extends HttpServlet {
         Employe employe = new Employe(nom, prenom, dateN, tel, adress, emailAdresse, matricule, dateRecrutement);
 
         try {
-            Optional<Employe> addedEmploye = employeService.add(employe);
+            Optional<Employe> addedEmploye = employeService.create(employe);
             if (addedEmploye.isPresent()) {
                 request.setAttribute("successMessage", "Employee added successfully!");
             } else {
@@ -91,7 +91,7 @@ public class EmployeServlet extends HttpServlet {
     private void deleteEmploye(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String matricule = request.getParameter("matricule");
         if (matricule != null){
-            boolean deleted = employeService.Delete(matricule);
+            boolean deleted = employeService.delete(matricule);
             if (deleted){
                 response.sendRedirect(request.getContextPath() + "/employe?success=delete-success");
             }else {
@@ -106,7 +106,7 @@ public class EmployeServlet extends HttpServlet {
     private void editEmploye(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricule = request.getParameter("matricule");
         if (matricule != null) {
-            Optional<Employe> optEmp = employeService.SearchByMatricule(matricule);
+            Optional<Employe> optEmp = employeService.findByMatricule(matricule);
             if (!optEmp.isEmpty()) {
                 Employe employer = optEmp.get();
                 request.setAttribute("employe", employer);
