@@ -78,7 +78,7 @@ public class DemandeCreditServlet extends HttpServlet {
 
             Optional<Employe> employe = employeService.findByMatricule(employeMatricule);
 
-            Optional<Agence> agence = agenceService.findByCode(agenceCode);
+            Optional<Agence> agence = agenceService.findByCode(String.valueOf(1));
             Optional<Client> client = clientService.findByCode(clientCode);
 
             demandeCredit.setAgence(agence.orElse(null));
