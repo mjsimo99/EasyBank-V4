@@ -42,8 +42,27 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
 
     @Override
     public Optional<Entity> update(Entity entity) {
-        return Optional.empty();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+            Entity updatedEntity = em.merge(entity);
+            transaction.commit();
+            return Optional.of(updatedEntity);
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
     }
+
 
     @Override
     public Optional<Entity> findByID(Identifier id, Class<Entity> entityClass) {
