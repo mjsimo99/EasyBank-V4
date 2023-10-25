@@ -33,65 +33,6 @@ public class HelloServlet extends HttpServlet {
 
     }
 
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String method = req.getParameter("_METHOD");
-
-        if ("client".equals(method)) {
-            System.out.println("client");
-            ClientService clientService = new ClientService(new ClientImpl());
-            Client client = clientService.findByCode("AoCgl").get();
-            System.out.println(client.getNom());
-            System.out.println(client.getCode());
-
-        } else if ("employer".equals(method)) {
-            System.out.println("employer");
-            EmployeService employeService = new EmployeService(new EmployeImpl());
-            Employe employe = new Employe();
-            employe.setMatricule(generateRandomString(5));
-            employe.setNom("hibernate");
-            employe.setTel("0999000");
-            employe.setAdress("adresse");
-            employe.setPrenom("prenom");
-            employe.setEmailAdresse("email");
-            employe.setDateN(LocalDate.now());
-            employe.setDateRecrutement(LocalDate.now());
-            employeService.create(employe);
-        } else if ("agence".equals(method)) {
-            AgenceService agenceService = new AgenceService(new AgenceImp());
-
-            Agence agence = new Agence();
-            agence.setCode(generateRandomString(4));
-            agence.setNom("nom");
-            agence.setAdresse("adresse");
-            agence.setTel("tel");
-            agenceService.create(agence);
-
-        } else if ("demande".equals(method)) {
-            EmployeService employeService = new EmployeService(new EmployeImpl());
-            ClientService clientService = new ClientService(new ClientImpl());
-            AgenceService agenceService = new AgenceService(new AgenceImp());
-            Agence agence = agenceService.findByCode("Y54w").get();
-            Employe employe = employeService.findByMatricule("2cOM3").get();
-            Client client = clientService.findByCode("AoCgl").get();
-            DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
-            DemendeCredit demendeCredit = new DemendeCredit();
-            demendeCredit.setNumero(generateRandomString(5));
-            demendeCredit.setMontant(300D);
-            demendeCredit.setRemarque("description");
-            demendeCredit.setDate(LocalDate.now());
-            demendeCredit.setDuree("5");
-            demendeCredit.setStatus("EnAttante");
-            demendeCredit.setDate(LocalDate.now());
-            demendeCredit.setEmploye(employe);
-            demendeCredit.setAgence(agence);
-            demendeCredit.setClient(client);
-            demandeCreditService.create(demendeCredit);
-
-        }
-
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -101,34 +42,39 @@ public class HelloServlet extends HttpServlet {
         AgenceService agenceService = new AgenceService(new AgenceImp());
         DemandeCreditService demandeCreditService = new DemandeCreditService(new DemandeCreditImpl());
         String method = req.getParameter("_METHOD");
-         if ("demande".equals(method)) {
-            System.out.println("from demande");
+        String code = req.getParameter("_CODE");
+        if ("fake".equals(method)) {
+            Client client = new Client();
+            Employe employe = new Employe();
+            Agence agence = new Agence();
+            Optional<Client> optionalClient = clientService.findByCode("client");
+            Optional<Employe> employeOptional = employeService.findByMatricule("employer");
+            Optional<Agence> agenceOptional = agenceService.findByCode("agence");
+            if (optionalClient.isPresent()) client = optionalClient.get();
+            if (employeOptional.isPresent()) employe = employeOptional.get();
+            if (agenceOptional.isPresent()) agence = agenceOptional.get();
+            DemendeCredit demendeCreditFalse = new DemendeCredit();
+            demendeCreditFalse.setNumero(code);
+            demendeCreditFalse.setMontant(5000D);
+            demendeCreditFalse.setRemarque("description");
+            demendeCreditFalse.setDate(LocalDate.now());
+            demendeCreditFalse.setDuree("14");
+            demendeCreditFalse.setStatus("EnAttante");
+            demendeCreditFalse.setSimulation(384.50585834838205D);
+            demendeCreditFalse.setDate(LocalDate.now());
+            demendeCreditFalse.setEmploye(employe);
+            demendeCreditFalse.setAgence(agence);
+            demendeCreditFalse.setClient(client);
 
-            Agence agence = agenceService.findByCode("agence").get();
-            Employe employe = employeService.findByMatricule("employer").get();
-            Client client = clientService.findByCode("1").get();
+            Optional<DemendeCredit> optionalDemendeCredit = demandeCreditService.create(demendeCreditFalse);
+            if (optionalDemendeCredit.isPresent()) {
+                System.out.println("is present");
+            } else {
+                System.out.println("not present");
+            }
 
-            DemendeCredit demendeCredit = new DemendeCredit();
-            demendeCredit.setNumero(generateRandomString(5));
-            demendeCredit.setMontant(300D);
-            demendeCredit.setRemarque("description");
-            demendeCredit.setDate(LocalDate.now());
-            demendeCredit.setDuree("5");
-            demendeCredit.setStatus("EnAttante");
-            demendeCredit.setDate(LocalDate.now());
-            demendeCredit.setEmploye(employe);
-            demendeCredit.setAgence(agence);
-            demendeCredit.setClient(client);
-            demandeCreditService.create(demendeCredit);
+
         }
-        if ("client".equals(method)) {
-
-            Client client = clientService.findByCode("1").get();
-            System.out.println("client name : "+client.getNom());
-
-        }
-
-
     }
 
     public void destroy() {

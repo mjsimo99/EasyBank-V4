@@ -37,3 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store
 src/main/resources/META-INF/persistence.xml
+src/main/java/com/majidim/easybankv4/easybankv4/servlets/HelloServlet.java

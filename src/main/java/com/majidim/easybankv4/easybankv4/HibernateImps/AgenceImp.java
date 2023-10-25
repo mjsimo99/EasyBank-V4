@@ -10,4 +10,7 @@ public class AgenceImp extends HibernateImplementation<Agence,String> implements
     public Optional<Agence> findByID(String id) {
         return super.findByID(id, Agence.class);
     }
+    public boolean delete(String code){
+        return delete(code,Agence.class);
+    }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class DemandeCreditService {
+    private double Taux = 0.12D;
+    private double tolerance = 1e-3;
     private final DemandeCreditImpl creditImpl;
 
     public DemandeCreditService(DemandeCreditImpl creditImpl) {
@@ -14,24 +16,30 @@ public class DemandeCreditService {
     }
 
     public Optional<DemendeCredit> create(DemendeCredit demendeCredit) {
-        System.out.println("numero"+demendeCredit.getNumero());
-        System.out.println("remarque"+demendeCredit.getRemarque());
-        System.out.println("status"+demendeCredit.getStatus());
-        return creditImpl.create(demendeCredit);
+        if (validate(demendeCredit)) return creditImpl.create(demendeCredit);
+        else return Optional.empty();
     }
 
     public Optional<DemendeCredit> findByCode(String code) {
         return creditImpl.findByID(code);
     }
 
-
-  public List<DemendeCredit> ShowList() {
+    public List<DemendeCredit> ShowList() {
         return creditImpl.getAll();
     }
-    public boolean delete(DemendeCredit demendeCredit){
-        return creditImpl.delete(demendeCredit.getNumero());
+
+    public boolean delete(String numero) {
+        return creditImpl.delete(numero);
     }
-/*
+    private boolean validate(DemendeCredit demendeCredit) {
+        return (Math.abs(calculeMensualite(demendeCredit) - demendeCredit.getSimulation()) < tolerance);
+
+    }
+    private Double calculeMensualite(DemendeCredit demendeCredit){
+        return (demendeCredit.getMontant()*Taux/12) /(1- Math.pow( 1+(Taux/12),- Integer.parseInt(demendeCredit.getDuree()) ));
+    }
+
+    /*
 
     public List<DemendeCredit> SearchByStatus(CreditStatus status) {
         return creditImpl.SearchByStatus(status);

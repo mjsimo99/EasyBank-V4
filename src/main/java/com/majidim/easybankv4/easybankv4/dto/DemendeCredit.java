@@ -27,6 +27,7 @@ public class DemendeCredit {
     private String status;
     @Column
     private Double simulation;
+
     @ManyToOne
 
     private Employe employe;

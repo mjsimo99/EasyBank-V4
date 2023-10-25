@@ -2,6 +2,7 @@ package com.majidim.easybankv4.easybankv4.HibernateImps;
 
 import com.majidim.easybankv4.easybankv4.HibernateImps.Interfaces.IHEmployer;
 import com.majidim.easybankv4.easybankv4.dto.Client;
+import com.majidim.easybankv4.easybankv4.dto.DemendeCredit;
 import com.majidim.easybankv4.easybankv4.dto.Employe;
 
 import java.util.List;
@@ -14,5 +15,8 @@ public class EmployeImpl extends HibernateImplementation<Employe, String> implem
     public List<Employe> getAll(){
 
         return getAll(Employe.class);
+    }
+    public boolean delete(String code){
+        return delete(code, Employe.class);
     }
 }

@@ -12,5 +12,5 @@ public interface InterfaceData<Entity, Identifier> {
 
     public List<Entity> getAll(Class<Entity> entityClass);
 
-    public boolean delete(Identifier id);
+    public boolean delete(Identifier id,Class<Entity> entityClass);
 }
