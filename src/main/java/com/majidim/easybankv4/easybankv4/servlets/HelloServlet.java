@@ -110,11 +110,12 @@ public class HelloServlet extends HttpServlet {
 
             DemendeCredit demendeCredit = new DemendeCredit();
             demendeCredit.setNumero(generateRandomString(5));
-            demendeCredit.setMontant(300D);
+            demendeCredit.setMontant(5000D);
             demendeCredit.setRemarque("description");
             demendeCredit.setDate(LocalDate.now());
-            demendeCredit.setDuree("5");
+            demendeCredit.setDuree("14");
             demendeCredit.setStatus("EnAttante");
+            demendeCredit.setSimulation(384.50585834838205D);
             demendeCredit.setDate(LocalDate.now());
             demendeCredit.setEmploye(employe);
             demendeCredit.setAgence(agence);
