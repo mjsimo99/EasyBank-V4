@@ -62,10 +62,9 @@ public class DemandeCreditServlet extends HttpServlet {
             Double montant = Double.parseDouble(request.getParameter("montant"));
             String duree = request.getParameter("duree");
             String remarque = request.getParameter("remarque");
-            String status = request.getParameter("status");
             String agenceCode = request.getParameter("agenceCode");
             String employeMatricule = request.getParameter("employeMatricule");
-            String clientCode = request.getParameter("clientCode");
+            String clientCode = request.getParameter("client_code");
 
             DemendeCredit demandeCredit = new DemendeCredit();
             demandeCredit.setNumero(generateRandomString(6));
@@ -73,37 +72,36 @@ public class DemandeCreditServlet extends HttpServlet {
             demandeCredit.setMontant(montant);
             demandeCredit.setDuree(duree);
             demandeCredit.setRemarque(remarque);
-            demandeCredit.setStatus(status);
+            demandeCredit.setStatus("EnAttente");
+            Optional<Employe> employe = employeService.findByMatricule(employeMatricule);
 
             Optional<Agence> agence = agenceService.findByCode(agenceCode);
-            Optional<Employe> employe = employeService.findByMatricule(employeMatricule);
             Optional<Client> client = clientService.findByCode(clientCode);
 
-            if (agence.isPresent() && employe.isPresent() && client.isPresent()) {
-                demandeCredit.setAgence(agence.get());
-                demandeCredit.setEmploye(employe.get());
-                demandeCredit.setClient(client.get());
+            demandeCredit.setAgence(agence.orElse(null));
+            demandeCredit.setEmploye(employe.orElse(null));
+            demandeCredit.setClient(client.orElse(null));
 
-                Optional<DemendeCredit> addedDemandeCredit = demandeCreditService.create(demandeCredit);
+            Optional<DemendeCredit> addedDemandeCredit = demandeCreditService.create(demandeCredit);
 
-                if (addedDemandeCredit.isPresent()) {
-                    request.setAttribute("successMessage", "Demande de crédit ajoutée avec succès!");
-                } else {
-                    request.setAttribute("errorMessage", "Échec de l'ajout de la demande de crédit.");
-                }
+            if (addedDemandeCredit.isPresent()) {
+                request.setAttribute("successMessage", "Demande de crédit ajoutée avec succès!");
+                System.out.println("Demande de crédit ajoutée avec succès: " + addedDemandeCredit.get().getNumero());
             } else {
-                request.setAttribute("errorMessage", "Une erreur s'est produite lors de l'ajout de la demande de crédit.");
+                request.setAttribute("errorMessage", "Échec de l'ajout de la demande de crédit.");
+                System.out.println("Échec de l'ajout de la demande de crédit.");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Une erreur s'est produite lors de l'ajout de la demande de crédit.");
+            request.setAttribute("errorMessage", "la2");
+            System.out.println("Une erreur s'est produite lors de l'ajout de la demande de crédit: " + e.getMessage());
         }
 
-        listEmploye(request, response);
+        request.getRequestDispatcher("/view/simulation/simulation.jsp").forward(request, response);
     }
 
 
-    @Override
+        @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

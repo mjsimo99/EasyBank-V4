@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <%@ include file="../includes/header.jsp" %>
 <div class="flex justify-center items-center mt-40 mb-40">
@@ -62,14 +63,6 @@
                         <input class="form-inputs" type="text" id="prenom" name=prenom" value="" required><br>
                         <label for="dateN">Date of Birth (YYYY-MM-DD):</label>
                         <input class="form-inputs" type="date" id="dateN" name="dateN" value="" required><br>
-                        <label for="dateN">Employe:</label>
-                        <select class="form-inputs" id="employeeSelect" name="employeeSelect" required>
-                            <option value="">Choose an employee</option>
-                            <c:forEach items="${employes}" var="employee">
-                                <option value="${employee.matricule}">${employee.nom} ${employee.prenom}</option>
-                            </c:forEach>
-                        </select>
-
                         <label for="tel">Phone:</label>
                         <input class="form-inputs" type="text" id="tel" name="tel" value="" required><br>
                         <label for="adress">Address:</label>
@@ -83,6 +76,67 @@
         <button type="button" id="nextBtn" class="btn button-update" onclick="nextStep()">Next</button>
     </div>
     </form>
+
 </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <form id="creditForm" action="${request.contextPath}/demandeCredit?action=add" method="post">
+                <label for="montant">Montant:</label>
+                <input class="form-inputs" type="text" id="montant" name="montant" value="" readonly>
+
+                <label for="duree">Durée:</label>
+                <input class="form-inputs" type="text" id="duree" name="duree" value="" readonly>
+
+                <label for="remarque">Remarque:</label>
+                <input class="form-inputs" type="text" id="remarque" name="remarque" value="" >
+
+                <label for="simulation">Simulation:</label>
+                <input class="form-inputs" type="text" id="simulation" name="simulation" value="" readonly>
+
+                <label for="agenceCode">Code Agence:</label>
+                <input class="form-inputs" type="text" id="agenceCode" name="agenceCode" value="" >
+
+                <label for="employeMatricule">Matricule Employé:</label>
+
+                <select class="form-inputs" id="employeMatricule" name="employeMatricule" required>
+                    <option value="">Choose an employee</option>
+                    <c:forEach items="${employes}" var="employee">
+                        <option value="${employee.matricule}">${employee.nom} ${employee.prenom}</option>
+                    </c:forEach>
+                </select>
+
+                <label for="client_code">Code Client:</label>
+                <input class="form-inputs" type="text" id="client_code" name="client_code" value="" readonly>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
 </div>
 <%@ include file="../includes/footer.jsp" %>
+<% String successMessage = (String) request.getAttribute("successMessage"); %>
+<% if (successMessage != null) { %>
+<script>
+    swal({
+        title: "Success!",
+        text: "<%= successMessage %>",
+        icon: "success",
+    }).then(function (confirmed) {
+        if (confirmed) {
+            window.location.href = "${pageContext.request.contextPath}/client?action=list";
+        }
+    });
+</script>
+<% } %>
+<% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+<% if (errorMessage != null) { %>
+<script>
+    swal({
+        title: "Error!",
+        text: "<%= errorMessage %>",
+        icon: "error",
+    });
+</script>
+<% } %>
