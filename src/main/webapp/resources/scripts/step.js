@@ -22,7 +22,7 @@ function showStep(step) {
         document.getElementById("prevBtn").style.display = "none";
     } else if (currentStep === steps.length) {
         document.getElementById("prevBtn").style.display = "block";
-        document.getElementById("nextBtn").innerHTML = "Submit";
+        document.getElementById("nextBtn").innerHTML = "Done";
     } else {
         document.getElementById("prevBtn").style.display = "block";
         document.getElementById("nextBtn").innerHTML = "Next";
@@ -62,7 +62,7 @@ function saveToLocalStorage() {
     localStorage.setItem("montant", loanAmountInput.value);
     localStorage.setItem("duree", monthlyPaymentsInput.value);
     localStorage.setItem("simulation", simulationValue);
-    localStorage.setItem("code", code.value)
+    localStorage.setItem("client_code", code.value)
 }
 
 
