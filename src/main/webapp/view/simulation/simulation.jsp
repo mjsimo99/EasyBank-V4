@@ -1,4 +1,4 @@
-<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="../includes/header.jsp" %>
 <div class="flex justify-center items-center mt-40 mb-40">
@@ -65,9 +65,9 @@
                         <label for="dateN">Employe:</label>
                         <select class="form-inputs" id="employeeSelect" name="employeeSelect" required>
                             <option value="">Choose an employee</option>
-                            <x:forEach items="${employes}" var="employee">
+                            <c:forEach items="${employes}" var="employee">
                                 <option value="${employee.matricule}">${employee.nom} ${employee.prenom}</option>
-                            </x:forEach>
+                            </c:forEach>
                         </select>
 
                         <label for="tel">Phone:</label>
