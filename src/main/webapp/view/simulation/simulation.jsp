@@ -92,7 +92,7 @@
                 <input class="form-inputs" type="text" id="remarque" name="remarque" value="" >
 
                 <label for="simulation">Simulation:</label>
-                <input class="form-inputs" type="text" id="simulation" name="simulation" value="" readonly>
+                <input class="form-inputs" type="text" id="simulation" name="simulation" value="">
 
                 <label for="agenceCode">Code Agence:</label>
                 <input class="form-inputs" type="text" id="agenceCode" name="agenceCode" value="" >
