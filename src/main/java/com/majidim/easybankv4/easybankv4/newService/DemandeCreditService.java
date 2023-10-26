@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class DemandeCreditService {
     private double Taux = 0.12D;
-    private double tolerance = 1e-3;
+    private double tolerance = 1e-2;
     private final DemandeCreditImpl creditImpl;
 
     public DemandeCreditService(DemandeCreditImpl creditImpl) {
