@@ -3,7 +3,7 @@ package com.majidim.easybankv4.easybankv4.servlets;
 import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import com.majidim.easybankv4.easybankv4.dto.Client;
 import com.majidim.easybankv4.easybankv4.dto.Personne;
-import com.majidim.easybankv4.easybankv4.service.ClientService;
+import com.majidim.easybankv4.easybankv4.newService.ClientService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,7 +44,7 @@ public class ClientServlet extends HttpServlet {
     }
     private void searchClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
-        Optional<Client> optClient = clientService.SearchByCode(query);
+        Optional<Client> optClient = clientService.findByCode(query);
         request.setAttribute("clients", optClient);
         request.getRequestDispatcher("/view/client/clientlist.jsp").forward(request, response);
     }
@@ -62,7 +62,7 @@ public class ClientServlet extends HttpServlet {
     private void editClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         if (code != null) {
-            Optional<Client> optClient = clientService.SearchByCode(code);
+            Optional<Client> optClient = clientService.findByCode(code);
             if (!optClient.isEmpty()) {
                 Client client = optClient.get();
                 request.setAttribute("client", client);
@@ -76,9 +76,11 @@ public class ClientServlet extends HttpServlet {
     }
 
     private void deleteClient(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("reached destination");
         String code = request.getParameter("code");
+        System.out.println(code);
         if (code != null) {
-            boolean deleted = clientService.Delete(code);
+            boolean deleted = clientService.delete(code);
             if (deleted) {
                 response.sendRedirect(request.getContextPath() + "/client?success=delete-success");
             } else {
@@ -130,7 +132,7 @@ public class ClientServlet extends HttpServlet {
 
         try {
 
-            Optional<Client> addedClient = clientService.Add(client);
+            Optional<Client> addedClient = clientService.create(client);
             if (addedClient.isPresent()) {
                 request.setAttribute("successMessage", "Client added successfully!");
             } else {

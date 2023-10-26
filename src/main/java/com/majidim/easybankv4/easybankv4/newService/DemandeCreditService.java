@@ -38,7 +38,9 @@ public class DemandeCreditService {
     private Double calculeMensualite(DemendeCredit demendeCredit){
         return (demendeCredit.getMontant()*Taux/12) /(1- Math.pow( 1+(Taux/12),- Integer.parseInt(demendeCredit.getDuree()) ));
     }
-
+    public Optional<DemendeCredit> update(DemendeCredit demendeCredit) {
+        return creditImpl.update(demendeCredit);
+    }
     /*
 
     public List<DemendeCredit> SearchByStatus(CreditStatus status) {
@@ -53,7 +55,5 @@ public class DemandeCreditService {
         return creditImpl.SearchByCode(numero);
     }
 
-    public Optional<DemendeCredit> UpdateStatus(DemendeCredit demendeCredit) {
-        return creditImpl.UpdateStatus(demendeCredit);
-    }*/
+    */
 }

@@ -4,6 +4,7 @@ import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import com.majidim.easybankv4.easybankv4.dto.Client;
 import com.majidim.easybankv4.easybankv4.dto.Personne;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ClientService {
@@ -21,18 +22,18 @@ public class ClientService {
     public Optional<Client> findByCode(String code) {
         return clientImpl.findByID(code);
     }
-/*
-    public boolean Delete(String code) {
-        return clientImpl.Delete(code);
-    }
-
     public List<Client> Showlist() {
-        return clientImpl.Showlist();
+        return clientImpl.getAll();
     }
-
+    public boolean delete(String code) {
+        return clientImpl.delete(code);
+    }
     public Optional<Client> Update(Client client) {
-        return clientImpl.Update(client);
+        return clientImpl.update(client);
     }
+/*
+
+
 
 
     public List<Client> SearchByMatricule(String code) {

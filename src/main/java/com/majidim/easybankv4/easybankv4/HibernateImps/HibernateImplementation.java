@@ -42,8 +42,27 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
 
     @Override
     public Optional<Entity> update(Entity entity) {
-        return Optional.empty();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+            Entity updatedEntity = em.merge(entity);
+            transaction.commit();
+            return Optional.of(updatedEntity);
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
     }
+
 
     @Override
     public Optional<Entity> findByID(Identifier id, Class<Entity> entityClass) {
@@ -100,19 +119,25 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
 
     @Override
     public boolean delete(Identifier id, Class<Entity> entityClass) {
+        System.out.println("id "+id);
+        System.out.println("entity class "+entityClass);
         EntityManager em = emf.createEntityManager(); //represent the context
         try {
             em.getTransaction().begin();
             try {
                 Entity entity = em.find(entityClass, id);
                 if (entity != null) {
+                    System.out.println("found entity");
                     em.remove(entity);
+
                     em.getTransaction().commit();
                     return true;
                 } else {
                     return false;
                 }
             } catch (EntityNotFoundException e) {
+                System.out.println("couldn't find entity");
+                System.out.println(e.getMessage());
                 return false; // Entity not found
             } catch (Exception e) {
                 //e.printStackTrace();

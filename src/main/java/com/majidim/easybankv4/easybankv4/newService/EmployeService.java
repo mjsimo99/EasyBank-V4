@@ -22,5 +22,13 @@ public class EmployeService {
     public List<Employe> getAll(){
         return employeImpl.getAll();
     }
-
+    public List<Employe> ShowList(){
+        return employeImpl.getAll();
+    }
+    public Optional<Employe> Update(Employe employe){
+        return employeImpl.update(employe);
+    }
+    public boolean delete(String code) {
+        return employeImpl.delete(code);
+    }
 }

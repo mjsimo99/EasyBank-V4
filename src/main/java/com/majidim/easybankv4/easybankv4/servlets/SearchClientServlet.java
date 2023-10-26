@@ -2,7 +2,7 @@ package com.majidim.easybankv4.easybankv4.servlets;
 
 import com.majidim.easybankv4.easybankv4.HibernateImps.ClientImpl;
 import com.majidim.easybankv4.easybankv4.dto.Client;
-import com.majidim.easybankv4.easybankv4.service.ClientService;
+import com.majidim.easybankv4.easybankv4.newService.ClientService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,7 +26,7 @@ public class SearchClientServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String clientCode = request.getParameter("code");
 
-        Optional<Client> optClient = clientService.SearchByCode(clientCode);
+        Optional<Client> optClient = clientService.findByCode(clientCode);
 
         if (!optClient.isEmpty()) {
             Client client = optClient.get();
