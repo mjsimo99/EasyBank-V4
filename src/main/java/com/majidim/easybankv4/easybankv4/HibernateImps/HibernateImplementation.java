@@ -17,10 +17,6 @@ public class HibernateImplementation<Entity, Identifier> implements InterfaceDat
         emf = Persistence.createEntityManagerFactory("myPersistence");
     }
 
-    public HibernateImplementation(EntityManager em) {
-
-        emf = Persistence.createEntityManagerFactory("myPersistence");
-    }
 
     @Override
     public Optional<Entity> create(Entity entity) {

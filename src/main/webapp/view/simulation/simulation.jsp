@@ -123,7 +123,7 @@
         icon: "success",
     }).then(function (confirmed) {
         if (confirmed) {
-            window.location.href = "${pageContext.request.contextPath}/client?action=list";
+            window.location.href = "${pageContext.request.contextPath}/demandeCredit?action=list";
         }
     });
 </script>

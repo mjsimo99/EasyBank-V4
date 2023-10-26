@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class DemandeCreditImpl extends HibernateImplementation<DemendeCredit , String> implements IHDemandeCredit {
     public Optional<DemendeCredit> findByID(String code) {
+
         return findByID(code, DemendeCredit.class);
     }
     public List<DemendeCredit> getAll(){

@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public class EmployeImpl extends HibernateImplementation<Employe, String> implements IHEmployer {
     public Optional<Employe> findByID(String id) {
+
         return super.findByID(id, Employe.class);
     }
     public List<Employe> getAll(){

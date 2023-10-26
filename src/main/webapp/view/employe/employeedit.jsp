@@ -22,7 +22,7 @@
     <form action="${request.contextPath}/employe?action=update" method="post">
         <input class="form-inputs" type="hidden" name="action" value="edit">
         <label for="matricule">Employe Matricule:</label>
-        <input class="form-inputs" type="text" id="matricule" name="matricule" value="${employe.matricule}" readonly><br>
+        <input class="form-inputs" type="hidden" id="matricule" name="matricule" value="${employe.matricule}" readonly><br>
         <label for="nom">Last Name:</label>
         <input class="form-inputs" type="text" id="nom" name="nom" value="${employe.nom}" required><br>
         <label for="prenom">First Name:</label>

@@ -13,7 +13,7 @@
     <form action="${request.contextPath}/client?action=update" method="post">
         <input class="form-inputs" type="hidden" name="action" value="edit">
         <label for="code">Client Code:</label>
-        <input class="form-inputs" type="text" id="code" name="code" value="${client.code}" readonly><br>
+        <input class="form-inputs" type="hidden" id="code" name="code" value="${client.code}" readonly><br>
         <label for="nom">Last Name:</label>
         <input class="form-inputs" type="text" id="nom" name="nom" value="${client.nom}" required><br>
         <label for="prenom">First Name:</label>
