@@ -56,17 +56,17 @@
                 <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
                     <div class="mb-4">
                         <label class="block font-semibold text-gray-700">Step 3: Mes infos personnelles</label>
-                        <input class="form-inputs" type="hidden" name="action" value="edit">
+                        <input class="form-inputs" type="hidden" name="action" value="edit" readonly>
                         <label for="nom">Last Name:</label>
-                        <input class="form-inputs" type="text" id="nom" name="nom" value="" required><br>
+                        <input class="form-inputs" type="text" id="nom" name="nom" value="" required readonly><br>
                         <label for="prenom">First Name:</label>
-                        <input class="form-inputs" type="text" id="prenom" name=prenom" value="" required><br>
+                        <input class="form-inputs" type="text" id="prenom" name=prenom" value="" required readonly><br>
                         <label for="dateN">Date of Birth (YYYY-MM-DD):</label>
-                        <input class="form-inputs" type="date" id="dateN" name="dateN" value="" required><br>
+                        <input class="form-inputs" type="date" id="dateN" name="dateN" value="" required readonly><br>
                         <label for="tel">Phone:</label>
                         <input class="form-inputs" type="text" id="tel" name="tel" value="" required><br>
                         <label for="adress">Address:</label>
-                        <input class="form-inputs" type="text" id="adress" name="adress" value="" required><br>
+                        <input class="form-inputs" type="text" id="adress" name="adress" value="" required readonly><br>
                     </div>
                 </div>
             </div>
@@ -94,8 +94,6 @@
                 <label for="simulation">Simulation:</label>
                 <input class="form-inputs" type="text" id="simulation" name="simulation" value="">
 
-                <label for="agenceCode">Code Agence:</label>
-                <input class="form-inputs" type="text" id="agenceCode" name="agenceCode" value="" >
 
                 <label for="employeMatricule">Matricule Employé:</label>
 

@@ -62,7 +62,6 @@ public class DemandeCreditServlet extends HttpServlet {
             Double montant = Double.parseDouble(request.getParameter("montant"));
             String duree = request.getParameter("duree");
             String remarque = request.getParameter("remarque");
-            String agenceCode = request.getParameter("agenceCode");
             String employeMatricule = request.getParameter("employeMatricule");
             String clientCode = request.getParameter("client_code");
             String simulation = request.getParameter("simulation");
@@ -96,7 +95,7 @@ public class DemandeCreditServlet extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "la2");
+            request.setAttribute("errorMessage", "Échec de l'ajout de la demande de crédit");
             System.out.println("Une erreur s'est produite lors de l'ajout de la demande de crédit: " + e.getMessage());
         }
 

@@ -596,6 +596,7 @@ button.search-button:hover::before {
     width: 80%;
     max-width: 500px;
     position: relative;
+    margin-top: 120px;
 }
 
 .close {

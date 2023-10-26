@@ -1,6 +1,8 @@
 document.getElementById("nextBtn").addEventListener("click", function () {
     if (currentStep === 3) {
         openModal();
+        updateFormFromLocalStorage();
+
     }
 });
 
@@ -27,10 +29,9 @@ function updateFormFromLocalStorage() {
 
     document.getElementById("montant").value = montant;
     document.getElementById("duree").value = duree;
-    document.getElementById("simulation").textContent = simulation;
+    document.getElementById("simulation").value = simulation;
     document.getElementById("client_code").value = client_code;
 }
 
 window.addEventListener("storage", updateFormFromLocalStorage);
 
-updateFormFromLocalStorage();
