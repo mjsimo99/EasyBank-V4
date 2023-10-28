@@ -7,7 +7,7 @@
         <h1 class="text-3xl font-bold mb-4 text-blue-600">Multi-Step Form</h1>
 
         <form id="stepForm">
-            <div class="flex flex-col space-y-4 md:space-x-4 md:flex-row md:space-y-0">
+            <div class="flex flex-col space-y-4 justify-center  md:space-x-4 md:flex-row md:space-y-0">
                 <div class="col-4 pad-ste active" id="link-back-step-1" onclick="changeStep(1)">
                     <span class="step-number">1</span> Simuler mon cr&eacute;dit
                 </div>
