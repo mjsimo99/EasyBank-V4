@@ -125,7 +125,7 @@ public class DemandeCreditServlet extends HttpServlet {
             Double montant = Double.parseDouble(request.getParameter("montant"));
             String duree = request.getParameter("duree");
             String remarque = request.getParameter("remarque");
-            String employeMatricule = request.getParameter("employeMatricule");
+            //String employeMatricule = request.getParameter("employeMatricule");
             String clientCode = request.getParameter("client_code");
             String simulation = request.getParameter("simulation");
 
@@ -138,7 +138,7 @@ public class DemandeCreditServlet extends HttpServlet {
             demandeCredit.setStatus("EnAttente");
             demandeCredit.setSimulation(Double.valueOf(simulation));
 
-            Optional<Employe> employe = employeService.findByMatricule(employeMatricule);
+            Optional<Employe> employe = employeService.findByMatricule("employer");
 
             Optional<Agence> agence = agenceService.findByCode(String.valueOf(1));
             Optional<Client> client = clientService.findByCode(clientCode);

@@ -3,17 +3,17 @@
 
 <%@ include file="../includes/header.jsp" %>
 <div class="flex justify-center items-center mt-40 mb-40">
-    <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg w-full md:w-1/2 lg:w-1/3 text-center">
+    <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg sm:w-full md:w-1/2  text-center">
         <h1 class="text-3xl font-bold mb-4 text-blue-600">Multi-Step Form</h1>
 
         <form id="stepForm">
-            <div class="flex flex-col space-y-4 md:space-x-4 md:flex-row md:space-y-0">
+            <div class="flex flex-col space-y-4 justify-center  md:space-x-4 md:flex-row md:space-y-0">
                 <div class="col-4 pad-ste active" id="link-back-step-1" onclick="changeStep(1)">
-                    <span class="step-number">1</span> Simuler mon crédit
+                    <span class="step-number">1</span> Simuler mon cr&eacute;dit
                 </div>
 
                 <div class="col-4 pad-ste" id="link-back-step-2" onclick="changeStep(2)">
-                    <span class="step-number">2</span> Mes coordonnées
+                    <span class="step-number">2</span> Mes coordonn&eacute;es
                 </div>
                 <div class="col-4 pad-ste" id="link-back-step-3" onclick="changeStep(3)">
                     <span class="step-number">3</span> Mes infos personnelles
@@ -41,7 +41,7 @@
             <div id="step2" class="step">
                 <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg text-center">
                     <div class="mb-4">
-                        <label for="code" class="block font-semibold text-gray-700 mb-4">Step 2: Mes coordonnées</label>
+                        <label for="code" class="block font-semibold text-gray-700 mb-4">Step 2: Mes coordonn&eacute;es</label>
                         <div class="relative">
                             <input class="input-cal input-base" name="code" id="code" placeholder="" type="text">
                             <label id="label-input">Enter Code Client</label>
@@ -85,17 +85,18 @@
                 <label for="montant">Montant:</label>
                 <input class="form-inputs" type="text" id="montant" name="montant" value="" readonly>
 
-                <label for="duree">Durée:</label>
+                <label for="duree">Dur&eacute;e:</label>
                 <input class="form-inputs" type="text" id="duree" name="duree" value="" readonly>
+
+                <label for="simulation">mensualit&eacute;:</label>
+                <input class="form-inputs" type="text" id="simulation" name="simulation" value="">
 
                 <label for="remarque">Remarque:</label>
                 <input class="form-inputs" type="text" id="remarque" name="remarque" value="" >
 
-                <label for="simulation">Simulation:</label>
-                <input class="form-inputs" type="text" id="simulation" name="simulation" value="">
 
 
-                <label for="employeMatricule">Matricule Employé:</label>
+ <%--               <label for="employeMatricule">Matricule Employ&eacute;:</label>
 
                 <select class="form-inputs" id="employeMatricule" name="employeMatricule" required>
                     <option value="">Choose an employee</option>
@@ -105,9 +106,10 @@
                 </select>
 
                 <label for="client_code">Code Client:</label>
-                <input class="form-inputs" type="text" id="client_code" name="client_code" value="" readonly>
+                <input  class="form-inputs" type="hidden" id="client_code" name="client_code" value="" readonly>
+                --%>
 
-                <button type="submit">Submit</button>
+                <button class="btn button-update mx-4" type="submit">Submit</button>
             </form>
         </div>
     </div>
